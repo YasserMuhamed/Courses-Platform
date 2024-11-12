@@ -3,6 +3,8 @@ class AppRoutes {
   static const kLoginView = '/loginView';
   static const kRegisterView = '/registerView';
 
+  static const kHomePage = '/homePage';
+
   // Dashboard && Product
   static const kDashboardView = '/dashboardView';
   static const kProductDetailsView = '/productDetailsView';

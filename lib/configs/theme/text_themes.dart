@@ -31,5 +31,7 @@ class TextThemes {
       titleSmall: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
 
       // label
-      labelLarge: TextStyle(fontSize: 18.sp, color: AppColors.altTextColor));
+      labelLarge: TextStyle(fontSize: 18.sp, color: AppColors.altTextColor),
+      labelMedium: TextStyle(fontSize: 16.sp, color: AppColors.altTextColor),
+      labelSmall: TextStyle(fontSize: 14.sp, color: AppColors.altTextColor));
 }

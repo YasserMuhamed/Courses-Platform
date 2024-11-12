@@ -1,7 +1,12 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/core/constants/login_constants.dart';
+import 'package:courses_platform/core/service_locator/locator.dart';
+import 'package:courses_platform/features/Auth/manager/cubit/auth_cubit.dart';
+import 'package:courses_platform/features/Auth/manager/cubit/register_cubit.dart';
+import 'package:courses_platform/features/Auth/presentation/pages/home_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/login_page.dart';
-import 'package:flutter/material.dart';
+import 'package:courses_platform/features/Auth/presentation/pages/register_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -9,19 +14,26 @@ class AppRouter {
     routes: [
       GoRoute(
         path: AppRoutes.kInitialRoute,
-        builder: (context, state) =>
-            isLoggedIn ? const Placeholder() : const LoginPage(),
+        builder: (context, state) => isLoggedIn
+            ? const HomePage()
+            : BlocProvider(
+                create: (context) => getIt<LoginCubit>(),
+                child: const LoginPage(),
+              ),
       ),
 
       // *************************** Auth Routes ***************************
-      // GoRoute(
-      //   path: AppRoutes.kLoginView,
-      //   builder: (context, state) => const LoginView(),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.kRegisterView,
-      //   builder: (context, state) => const RegisterView(),
-      // ),
+      GoRoute(
+        path: AppRoutes.kHomePage,
+        builder: (context, state) => const HomePage(),
+      ),
+      GoRoute(
+        path: AppRoutes.kRegisterView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<RegisterCubit>(),
+          child: const RegisterPage(),
+        ),
+      ),
 
       // *************************** Dashboard && Product Routes ***************************
 

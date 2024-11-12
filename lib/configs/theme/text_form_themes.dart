@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFormThemes {
   TextFormThemes._();
-  static double radius = 10.r;
+  static double radius = 4.r;
 
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
     fillColor: Colors.white,
@@ -12,15 +12,15 @@ class TextFormThemes {
     suffixIconColor: Colors.grey,
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
-      borderSide: BorderSide(color: Colors.grey, width: 2.w),
+      borderSide: BorderSide(color: Colors.grey, width: 1.w),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
-      borderSide: BorderSide(color: Colors.grey, width: 2.w),
+      borderSide: BorderSide(color: Colors.grey, width: 1.w),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
-      borderSide: BorderSide(color: AppColors.primaryColor, width: 2.w),
+      borderSide: BorderSide(color: AppColors.primaryColor, width: 1.w),
     ),
   );
 

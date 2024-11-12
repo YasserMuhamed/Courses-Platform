@@ -1,5 +1,6 @@
 import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextField extends StatelessWidget {
   const AppTextField(
@@ -63,6 +64,10 @@ class AppTextField extends StatelessWidget {
         floatingLabelBehavior:
             floatingLabelBehavior ?? FloatingLabelBehavior.auto,
         label: label ?? const Text(""),
+        errorStyle: Theme.of(context)
+            .textTheme
+            .labelMedium!
+            .copyWith(color: Colors.red, fontSize: 14.sp),
       ),
     );
   }

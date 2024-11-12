@@ -1,17 +1,21 @@
 import 'package:courses_platform/core/constants/login_constants.dart';
+import 'package:courses_platform/core/observer/bloc_observer.dart';
+import 'package:courses_platform/core/service_locator/locator.dart';
 import 'package:courses_platform/courses.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/helpers/shared_pref_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
-  String currentLocale = await SharedPrefHelper.getString("locale");
-  print("$currentLocale    currentLocale in main.dart");
+  await Future.wait<void>(
+      [checkIfUserLoggedIn(), EasyLocalization.ensureInitialized()]);
 
-  await checkIfUserLoggedIn();
+  // await SharedPrefHelper.clearAllSecuredData();
+  getItSetup();
+  Bloc.observer = MyBlocObserver();
   runApp(
     EasyLocalization(
         supportedLocales: const [Locale('en'), Locale('ar')],
@@ -25,7 +29,7 @@ void main() async {
 }
 
 checkIfUserLoggedIn() async {
-  String? userToken = await SharedPrefHelper.getString("userToken");
+  String? userToken = await SharedPrefHelper.getSecuredString("userToken");
   if (userToken!.isNotEmpty) {
     return isLoggedIn = true;
   } else {

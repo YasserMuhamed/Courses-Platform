@@ -16,12 +16,14 @@ class AppTextField extends StatelessWidget {
       this.controller,
       this.maxLines,
       this.floatingLabelBehavior,
-      this.minLines});
+      this.minLines,
+      this.focusNode});
   final bool? obscureText;
   final Icon? prefixIcon;
   final Widget? suffixIcon;
   final String? hintText;
   final int? maxLines;
+  final FocusNode? focusNode;
   final int? minLines;
   final Widget? label;
   final Function(String)? onChange;
@@ -35,6 +37,7 @@ class AppTextField extends StatelessWidget {
     return TextFormField(
       style: Theme.of(context).textTheme.titleSmall,
       maxLines: maxLines,
+      focusNode: focusNode,
       minLines: minLines,
       controller: controller,
       keyboardType: keyType ?? TextInputType.text,

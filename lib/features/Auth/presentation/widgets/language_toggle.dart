@@ -12,7 +12,7 @@ class LanguageToggle extends StatelessWidget {
         LocalizationService().toggleLocale(context);
       },
       icon: Icon(
-        Icons.language,
+        Icons.translate_rounded,
         size: 24.sp,
       ),
     );

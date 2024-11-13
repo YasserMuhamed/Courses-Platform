@@ -3,7 +3,7 @@ import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/shared_pref_helper.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
 import 'package:courses_platform/features/Auth/data/models/login_request.dart';
-import 'package:courses_platform/features/Auth/manager/cubit/auth_cubit.dart';
+import 'package:courses_platform/features/Auth/manager/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

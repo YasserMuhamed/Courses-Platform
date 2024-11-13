@@ -21,7 +21,7 @@ class SignUpText extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              GoRouter.of(context).push(AppRoutes.kRegisterView);
+              GoRouter.of(context).push(AppRoutes.kRegisterPage);
             },
             child: Text(
               "sign-up-new-account".tr(),

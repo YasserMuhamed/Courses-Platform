@@ -25,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   TextEditingController nameController = TextEditingController();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -35,69 +36,79 @@ class _RegisterPageState extends State<RegisterPage> {
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
-      child: Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const LanguageToggle(),
-                SizedBox(height: 20.h),
-                Expanded(
-                  child: ListView(
-                    children: [
-                      const Logo(),
-                      SizedBox(height: 26.h),
-                      NameField(nameController: nameController),
-                      SizedBox(height: 16.h),
-                      EmailField(emailController: emailController),
-                      SizedBox(height: 16.h),
-                      PasswordField(
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const LanguageToggle(),
+                  SizedBox(height: 20.h),
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        const Logo(),
+                        SizedBox(height: 26.h),
+                        NameField(
+                          nameController: nameController,
+                        ),
+                        SizedBox(height: 16.h),
+                        EmailField(
+                          emailController: emailController,
+                        ),
+                        SizedBox(height: 16.h),
+                        PasswordField(
+                            passwordController: passwordController,
+                            obscureText: obscureText,
+                            toggleObscureText: () {
+                              setState(() {
+                                obscureText = !obscureText;
+                              });
+                            }),
+                        SizedBox(height: 16.h),
+                        ConfirmPasswordField(
+                            passwordController: passwordController,
+                            obscureText: obscureText2,
+                            toggleObscureText: () {
+                              setState(() {
+                                obscureText2 = !obscureText2;
+                              });
+                            },
+                            confirmPasswordController:
+                                confirmPasswordController),
+                        SizedBox(height: 16.h),
+                        PhoneField(phoneController: phoneController),
+                        SizedBox(height: 20.h),
+                        RegisterButton(
+                          formKey: formKey,
+                          emailController: emailController,
                           passwordController: passwordController,
-                          obscureText: obscureText,
-                          toggleObscureText: () {
+                          confirmPasswordController: confirmPasswordController,
+                          nameController: nameController,
+                          phoneController: phoneController,
+                          autovalidateMode: autovalidateMode,
+                          setAutovalidateMode: (mode) {
                             setState(() {
-                              obscureText = !obscureText;
-                            });
-                          }),
-                      SizedBox(height: 16.h),
-                      ConfirmPasswordField(
-                          passwordController: passwordController,
-                          obscureText: obscureText2,
-                          toggleObscureText: () {
-                            setState(() {
-                              obscureText2 = !obscureText2;
+                              autovalidateMode = mode;
                             });
                           },
-                          confirmPasswordController: confirmPasswordController),
-                      SizedBox(height: 16.h),
-                      PhoneField(phoneController: phoneController),
-                      SizedBox(height: 20.h),
-                      RegisterButton(
-                        formKey: formKey,
-                        emailController: emailController,
-                        passwordController: passwordController,
-                        confirmPasswordController: confirmPasswordController,
-                        nameController: nameController,
-                        phoneController: phoneController,
-                        autovalidateMode: autovalidateMode,
-                        setAutovalidateMode: (mode) {
-                          setState(() {
-                            autovalidateMode = mode;
-                          });
-                        },
-                      ),
-                      SizedBox(height: 20.h),
-                      AlreadyHaveAccount(
-                        onTap: () {
-                          GoRouter.of(context).pop();
-                        },
-                      )
-                    ],
+                        ),
+                        SizedBox(height: 20.h),
+                        AlreadyHaveAccount(
+                          onTap: () {
+                            GoRouter.of(context).pop();
+                          },
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -6,12 +6,14 @@ class MyButton extends StatelessWidget {
   final VoidCallback onTap;
   final Color? color;
   final Widget? widget;
+  final double? height;
   const MyButton({
     super.key,
     required this.text,
     required this.onTap,
     this.color,
     this.widget,
+    this.height,
   });
 
   @override
@@ -22,12 +24,13 @@ class MyButton extends StatelessWidget {
       elevation: 5,
       child: MaterialButton(
         minWidth: double.infinity,
-        height: 20.h,
+        height: 26.h,
         onPressed: onTap,
         child: widget ??
             Text(
               text,
-              style: Theme.of(context).textTheme.labelLarge!.copyWith(
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
                     color: Colors.white,
                   ),
             ),

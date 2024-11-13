@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           ),
           IconButton(
               onPressed: () {
-                GoRouter.of(context).pushReplacement(AppRoutes.kLoginView);
+                GoRouter.of(context).pushReplacement(AppRoutes.kLoginPage);
               },
               icon: const Icon(Icons.logout)),
         ],

@@ -1,4 +1,3 @@
-import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,18 +5,22 @@ class TextThemes {
   TextThemes._();
 
   static TextTheme lightTextTheme = TextTheme(
-      // headline
-      headlineLarge: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-      headlineMedium: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
-      headlineSmall: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+    // headline
+    headlineLarge: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
+    headlineMedium: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
+    headlineSmall: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
 
-      // title
-      titleLarge: TextStyle(fontSize: 18.sp),
-      titleMedium: TextStyle(fontSize: 16.sp),
-      titleSmall: TextStyle(fontSize: 14.sp),
+    // title
+    titleLarge: TextStyle(fontSize: 18.sp),
+    titleMedium: TextStyle(fontSize: 16.sp),
+    titleSmall: TextStyle(fontSize: 14.sp),
 
-      // label
-      labelLarge: TextStyle(fontSize: 18.sp, color: AppColors.altTextColor));
+    // label
+    // label
+    labelLarge: TextStyle(fontSize: 18.sp),
+    labelMedium: TextStyle(fontSize: 16.sp),
+    labelSmall: TextStyle(fontSize: 14.sp),
+  );
 
   static TextTheme darkTextTheme = TextTheme(
       // headline
@@ -31,7 +34,7 @@ class TextThemes {
       titleSmall: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
 
       // label
-      labelLarge: TextStyle(fontSize: 18.sp, color: AppColors.altTextColor),
-      labelMedium: TextStyle(fontSize: 16.sp, color: AppColors.altTextColor),
-      labelSmall: TextStyle(fontSize: 14.sp, color: AppColors.altTextColor));
+      labelLarge: TextStyle(fontSize: 18.sp),
+      labelMedium: TextStyle(fontSize: 16.sp),
+      labelSmall: TextStyle(fontSize: 14.sp));
 }

@@ -21,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   TextEditingController emailController = TextEditingController();
+  FocusNode emailFocusNode = FocusNode();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -28,51 +29,58 @@ class _LoginPageState extends State<LoginPage> {
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
-      child: Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const LanguageToggle(),
-                SizedBox(height: 20.h),
-                Expanded(
-                  child: ListView(
-                    children: [
-                      const Logo(),
-                      SizedBox(height: 26.h),
-                      EmailField(emailController: emailController),
-                      SizedBox(height: 16.h),
-                      PasswordField(
-                        passwordController: passwordController,
-                        obscureText: obscureText,
-                        toggleObscureText: () {
-                          setState(() {
-                            obscureText = !obscureText;
-                          });
-                        },
-                      ),
-                      SizedBox(height: 5.h),
-                      const ForgotPasswordText(),
-                      SizedBox(height: 20.h),
-                      LoginButton(
-                        formKey: formKey,
-                        emailController: emailController,
-                        passwordController: passwordController,
-                        autovalidateMode: autovalidateMode,
-                        setAutovalidateMode: (mode) {
-                          setState(() {
-                            autovalidateMode = mode;
-                          });
-                        },
-                      ),
-                      SizedBox(height: 20.h),
-                      const SignUpText(),
-                    ],
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const LanguageToggle(),
+                  SizedBox(height: 20.h),
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        const Logo(),
+                        SizedBox(height: 26.h),
+                        EmailField(emailController: emailController),
+                        SizedBox(height: 16.h),
+                        PasswordField(
+                          passwordController: passwordController,
+                          obscureText: obscureText,
+                          toggleObscureText: () {
+                            setState(() {
+                              obscureText = !obscureText;
+                            });
+                          },
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                          child: ForgotPasswordText(),
+                        ),
+                        SizedBox(height: 20.h),
+                        LoginButton(
+                          formKey: formKey,
+                          emailController: emailController,
+                          passwordController: passwordController,
+                          autovalidateMode: autovalidateMode,
+                          setAutovalidateMode: (mode) {
+                            setState(() {
+                              autovalidateMode = mode;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 20.h),
+                        const SignUpText(),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

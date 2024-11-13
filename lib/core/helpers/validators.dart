@@ -46,4 +46,11 @@ class AppValidators {
     }
     return null;
   }
+
+  static String? otpValidator(String? value) {
+    if (value!.isEmpty) {
+      return "";
+    }
+    return null;
+  }
 }

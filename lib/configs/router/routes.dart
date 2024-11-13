@@ -1,8 +1,10 @@
 class AppRoutes {
   static const kInitialRoute = '/';
-  static const kLoginView = '/loginView';
-  static const kRegisterView = '/registerView';
-
+  static const kLoginPage = '/loginPage';
+  static const kRegisterPage = '/registerPage';
+  static const kForgetPasswordFirstPage = '/forgetPasswordFirstPage';
+  static const kForgetPasswordSecondPage = '/forgetPasswordSecondPage';
+  static const kForgetPasswordThirdPage = '/forgetPasswordThirdPage';
   static const kHomePage = '/homePage';
 
   // Dashboard && Product

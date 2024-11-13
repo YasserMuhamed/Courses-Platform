@@ -1,6 +1,6 @@
 class AppRegex {
   static bool isEmailValid(String email) {
-    return RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+    return RegExp(r'^\s*.+@[a-zA-Z]+\.[a-zA-Z]+(\.{0,1}[a-zA-Z]+)?\s*$')
         .hasMatch(email);
   }
 
@@ -32,5 +32,20 @@ class AppRegex {
 
   static bool hasMinLength(String password) {
     return RegExp(r'^(?=.{8,})').hasMatch(password);
+  }
+
+    static String obfuscateEmail(String email) {
+    int atIndex = email.indexOf('@');
+    if (atIndex == -1) return email; // Invalid email
+
+    String namePart = email.substring(0, atIndex);
+    String domainPart = email.substring(atIndex);
+
+    int obfuscateLength = (namePart.length / 2).ceil();
+    String obfuscatedNamePart =
+        namePart.substring(0, namePart.length - obfuscateLength) +
+            '*' * obfuscateLength;
+
+    return " $obfuscatedNamePart$domainPart";
   }
 }

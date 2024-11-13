@@ -1,6 +1,6 @@
 import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/observer/bloc_observer.dart';
-import 'package:courses_platform/core/service_locator/locator.dart';
+import 'package:courses_platform/core/DI/locator.dart';
 import 'package:courses_platform/courses.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.wait<void>(
       [checkIfUserLoggedIn(), EasyLocalization.ensureInitialized()]);
-
   // await SharedPrefHelper.clearAllSecuredData();
   getItSetup();
   Bloc.observer = MyBlocObserver();

@@ -25,10 +25,10 @@ ThemeData buildAppTheme(BuildContext context) {
       backgroundColor: Colors.transparent,
       titleTextStyle: TextStyle(
         color: AppColors.primaryColor,
-        fontSize: 25.sp,
+        fontSize: 18.sp,
         fontFamily: fontFamily,
       ),
-      iconTheme: IconThemeData(color: AppColors.primaryColor, size: 30.sp),
+      iconTheme: IconThemeData(color: AppColors.primaryColor, size: 18.sp),
     ),
   );
 }

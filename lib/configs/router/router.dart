@@ -1,8 +1,12 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/core/constants/login_constants.dart';
-import 'package:courses_platform/core/service_locator/locator.dart';
-import 'package:courses_platform/features/Auth/manager/cubit/auth_cubit.dart';
+import 'package:courses_platform/core/DI/locator.dart';
+import 'package:courses_platform/features/Auth/manager/cubit/forget_password_cubit.dart';
+import 'package:courses_platform/features/Auth/manager/cubit/login_cubit.dart';
 import 'package:courses_platform/features/Auth/manager/cubit/register_cubit.dart';
+import 'package:courses_platform/features/Auth/presentation/pages/forget_password_first_page.dart';
+import 'package:courses_platform/features/Auth/presentation/pages/forget_password_second_page.dart';
+import 'package:courses_platform/features/Auth/presentation/pages/forget_password_third_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/home_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/login_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/register_page.dart';
@@ -11,28 +15,49 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
+    initialLocation: isLoggedIn ? AppRoutes.kHomePage : AppRoutes.kLoginPage,
     routes: [
-      GoRoute(
-        path: AppRoutes.kInitialRoute,
-        builder: (context, state) => isLoggedIn
-            ? const HomePage()
-            : BlocProvider(
-                create: (context) => getIt<LoginCubit>(),
-                child: const LoginPage(),
-              ),
-      ),
-
       // *************************** Auth Routes ***************************
       GoRoute(
-        path: AppRoutes.kHomePage,
-        builder: (context, state) => const HomePage(),
+        path: AppRoutes.kLoginPage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<LoginCubit>(),
+          child: const LoginPage(),
+        ),
       ),
       GoRoute(
-        path: AppRoutes.kRegisterView,
+        path: AppRoutes.kRegisterPage,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt<RegisterCubit>(),
           child: const RegisterPage(),
         ),
+      ),
+      GoRoute(
+        path: AppRoutes.kForgetPasswordFirstPage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<ForgetPasswordCubit>(),
+          child: const ForgetPasswordFirstPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.kForgetPasswordSecondPage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<ForgetPasswordCubit>(),
+          child: ForgetPasswordSecondPage(
+            email: state.extra as String,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.kForgetPasswordThirdPage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<ForgetPasswordCubit>(),
+          child: const ForgetPasswordThirdPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.kHomePage,
+        builder: (context, state) => const HomePage(),
       ),
 
       // *************************** Dashboard && Product Routes ***************************

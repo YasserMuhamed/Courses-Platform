@@ -4,7 +4,7 @@ import 'package:courses_platform/features/Auth/data/models/login_response/login_
 import 'package:courses_platform/features/Auth/data/repositories/auth_repo.dart';
 import 'package:equatable/equatable.dart';
 
-part 'auth_state.dart';
+part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.authRepo) : super(AuthInitial());

@@ -3,6 +3,7 @@ import 'package:courses_platform/core/api/dio_factory.dart';
 import 'package:courses_platform/features/Auth/data/manager/Login_cubit/login_cubit.dart';
 import 'package:courses_platform/features/Auth/data/manager/forget_password_first_cubit/forget_password_cubit.dart';
 import 'package:courses_platform/features/Auth/data/manager/forget_password_second_cubit/forget_password_otp_cubit.dart';
+import 'package:courses_platform/features/Auth/data/manager/forget_password_third_cubit/forget_password_reset_cubit.dart';
 import 'package:courses_platform/features/Auth/data/manager/register_cubit/register_cubit.dart';
 import 'package:courses_platform/features/Auth/data/repositories/auth_repo_impl.dart';
 
@@ -16,10 +17,9 @@ void getItSetup() {
   getIt.registerLazySingleton<AuthRepoImpl>(
       () => AuthRepoImpl(apiManager: getIt<ApiManager>()));
 
-  getIt.registerLazySingleton<LoginCubit>(
-      () => LoginCubit(getIt<AuthRepoImpl>()));
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<AuthRepoImpl>()));
 
-  getIt.registerLazySingleton<RegisterCubit>(
+  getIt.registerFactory<RegisterCubit>(
       () => RegisterCubit(getIt<AuthRepoImpl>()));
 
   getIt.registerFactory<ForgetPasswordCubit>(
@@ -27,4 +27,7 @@ void getItSetup() {
 
   getIt.registerFactory<ForgetPasswordOtpCubit>(
       () => ForgetPasswordOtpCubit(getIt<AuthRepoImpl>()));
+
+  getIt.registerFactory<ForgetPasswordResetCubit>(
+      () => ForgetPasswordResetCubit(getIt<AuthRepoImpl>()));
 }

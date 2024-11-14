@@ -4,6 +4,7 @@ import 'package:courses_platform/core/DI/locator.dart';
 import 'package:courses_platform/features/Auth/data/manager/Login_cubit/login_cubit.dart';
 import 'package:courses_platform/features/Auth/data/manager/forget_password_first_cubit/forget_password_cubit.dart';
 import 'package:courses_platform/features/Auth/data/manager/forget_password_second_cubit/forget_password_otp_cubit.dart';
+import 'package:courses_platform/features/Auth/data/manager/forget_password_third_cubit/forget_password_reset_cubit.dart';
 import 'package:courses_platform/features/Auth/data/manager/register_cubit/register_cubit.dart';
 import 'package:courses_platform/features/Auth/data/models/forget_password_second_request.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_first_page.dart';
@@ -53,7 +54,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.kForgetPasswordThirdPage,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt<ForgetPasswordCubit>(),
+          create: (context) => getIt<ForgetPasswordResetCubit>(),
           child: ForgetPasswordThirdPage(
             request: state.extra as ForgetPasswordSecondRequest,
           ),

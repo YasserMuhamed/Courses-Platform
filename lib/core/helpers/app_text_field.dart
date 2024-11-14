@@ -44,7 +44,7 @@ class AppTextField extends StatelessWidget {
       validator: validator,
       obscureText: obscureText ?? false,
       onChanged: onChange,
-      autofocus: true,
+      autofocus: false,
       decoration: InputDecoration(
         labelStyle: Theme.of(context)
             .textTheme

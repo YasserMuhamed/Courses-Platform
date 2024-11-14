@@ -1,9 +1,11 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/DI/locator.dart';
-import 'package:courses_platform/features/Auth/manager/cubit/forget_password_cubit.dart';
-import 'package:courses_platform/features/Auth/manager/cubit/login_cubit.dart';
-import 'package:courses_platform/features/Auth/manager/cubit/register_cubit.dart';
+import 'package:courses_platform/features/Auth/data/manager/Login_cubit/login_cubit.dart';
+import 'package:courses_platform/features/Auth/data/manager/forget_password_first_cubit/forget_password_cubit.dart';
+import 'package:courses_platform/features/Auth/data/manager/forget_password_second_cubit/forget_password_otp_cubit.dart';
+import 'package:courses_platform/features/Auth/data/manager/register_cubit/register_cubit.dart';
+import 'package:courses_platform/features/Auth/data/models/forget_password_second_request.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_first_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_second_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_third_page.dart';
@@ -42,7 +44,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.kForgetPasswordSecondPage,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt<ForgetPasswordCubit>(),
+          create: (context) => getIt<ForgetPasswordOtpCubit>(),
           child: ForgetPasswordSecondPage(
             email: state.extra as String,
           ),
@@ -52,7 +54,9 @@ class AppRouter {
         path: AppRoutes.kForgetPasswordThirdPage,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt<ForgetPasswordCubit>(),
-          child: const ForgetPasswordThirdPage(),
+          child: ForgetPasswordThirdPage(
+            request: state.extra as ForgetPasswordSecondRequest,
+          ),
         ),
       ),
       GoRoute(

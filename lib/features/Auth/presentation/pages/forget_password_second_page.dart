@@ -3,7 +3,8 @@ import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:courses_platform/core/helpers/app_regex.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
-import 'package:courses_platform/features/Auth/manager/cubit/cubit/forget_password_otp_cubit.dart';
+import 'package:courses_platform/features/Auth/data/manager/forget_password_second_cubit/forget_password_otp_cubit.dart';
+import 'package:courses_platform/features/Auth/data/models/forget_password_second_request.dart';
 import 'package:courses_platform/features/Auth/presentation/widgets/svg_icon.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -43,151 +44,156 @@ class _ForgetPasswordSecondPageState extends State<ForgetPasswordSecondPage> {
         child: Form(
           key: formKey,
           autovalidateMode: autovalidateMode,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                child: Column(
-                  children: [
-                    const Center(
-                      child: SvgIcon(
-                        path: 'assets/SVGs/mail-open.svg',
-                      ),
-                    ),
-                    SizedBox(height: 20.h),
-                    Center(
-                      child: Text(
-                        'password-reset'.tr(),
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Center(
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: 'we-sent-code'.tr(),
-                          style: Theme.of(context).textTheme.labelSmall,
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: AppRegex.obfuscateEmail(widget.email),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall!
-                                  .copyWith(fontWeight: FontWeight.bold),
-                            ),
-                          ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 75.h),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Column(
+                    children: [
+                      const Center(
+                        child: SvgIcon(
+                          path: 'assets/SVGs/mail-open.svg',
                         ),
                       ),
-                    ),
-                    SizedBox(height: 30.h),
-                  ],
+                      SizedBox(height: 20.h),
+                      Center(
+                        child: Text(
+                          'password-reset'.tr(),
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                      ),
+                      SizedBox(height: 10.h),
+                      Center(
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: 'we-sent-code'.tr(),
+                            style: Theme.of(context).textTheme.labelSmall,
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: AppRegex.obfuscateEmail(widget.email),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 30.h),
+                    ],
+                  ),
                 ),
-              ),
-              OtpTextField(
-                numberOfFields: 6,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                OtpTextField(
+                  numberOfFields: 6,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  borderColor: AppColors.lightGrey,
+                  focusedBorderColor: AppColors.primaryColor,
+                  styles: const [],
+                  fieldWidth: 40.w,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(1),
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  showFieldAsBox: false,
+                  borderWidth: 4.0,
+                  //runs when a code is typed in
 
-                borderColor: AppColors.lightGrey,
-                focusedBorderColor: AppColors.primaryColor,
-                styles: const [],
-                fieldWidth: 40.w,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(1),
-                  FilteringTextInputFormatter.digitsOnly
-                ],
-                showFieldAsBox: false,
-                borderWidth: 4.0,
-                //runs when a code is typed in
-                onCodeChanged: (String code) {
-                  if (code.length == 6) {
-                    formKey.currentState?.validate();
-                  }
-                },
-                //runs when every textfield is filled
-                onSubmit: (String verificationCode) {
-                  otpCode = verificationCode;
-                },
-              ),
-              SizedBox(height: 20.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                child: Column(
-                  children: [
-                    BlocConsumer<ForgetPasswordOtpCubit,
-                        ForgetPasswordOtpState>(
-                      listenWhen: (previous, current) =>
-                          current is ForgetPasswordOTPSuccess ||
-                          current is ForgetPasswordOTPFailure ||
-                          current is ForgetPasswordOTPLoading,
-                      listener: (context, state) {
-                        if (state is ForgetPasswordOTPSuccess) {
-                          print("11111111111111111111111111111111111111111");
-                          if (state.message == "true") {
-                            print("22222222222222222222222222222222222222222");
-                            ToastHelper()
-                                .showSuccessToast(context, "otp-verified".tr());
-                            GoRouter.of(context)
-                                .push(AppRoutes.kForgetPasswordThirdPage);
-                          } else {
+                  //runs when every textfield is filled
+                  onSubmit: (String verificationCode) {
+                    otpCode = verificationCode;
+                  },
+                ),
+                SizedBox(height: 20.h),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                  child: Column(
+                    children: [
+                      BlocConsumer<ForgetPasswordOtpCubit,
+                          ForgetPasswordOtpState>(
+                        listenWhen: (previous, current) =>
+                            current is ForgetPasswordOTPSuccess ||
+                            current is ForgetPasswordOTPFailure ||
+                            current is ForgetPasswordOTPLoading,
+                        listener: (context, state) {
+                          if (state is ForgetPasswordOTPSuccess) {
+                            if (state.status == true) {
+                              ToastHelper().showSuccessToast(
+                                  context, "otp-verified".tr());
+                              GoRouter.of(context).push(
+                                  AppRoutes.kForgetPasswordThirdPage,
+                                  extra: ForgetPasswordSecondRequest(
+                                      email: widget.email,
+                                      code: int.parse(otpCode)));
+                            } else {
+                              ToastHelper().showErrorToast(
+                                  context, "otp-incorrect".tr());
+                            }
+                          } else if (state is ForgetPasswordOTPFailure) {
                             ToastHelper()
                                 .showErrorToast(context, "otp-incorrect".tr());
                           }
-                        } else if (state is ForgetPasswordOTPFailure) {
-                          ToastHelper()
-                              .showErrorToast(context, "otp-incorrect".tr());
-                        }
-                      },
-                      buildWhen: (previous, current) =>
-                          current is ForgetPasswordOTPSuccess ||
-                          current is ForgetPasswordOTPFailure ||
-                          current is ForgetPasswordOTPLoading,
-                      builder: (context, state) {
-                        return MyButton(
-                            text: (state is ForgetPasswordOTPLoading)
-                                ? "loading"
-                                : "verify-otp".tr(),
-                            onTap: () {
-                              if (otpCode.length == 6) {
-                                print(otpCode);
-                                BlocProvider.of<ForgetPasswordOtpCubit>(context)
-                                    .forgetPasswordOTP(widget.email, otpCode);
-                              } else {
-                                ToastHelper().showErrorToast(
-                                    context, "otp-incorrect".tr());
-                              }
-                            });
-                      },
-                    ),
-                    SizedBox(height: 20.h),
-                  ],
+                        },
+                        buildWhen: (previous, current) =>
+                            current is ForgetPasswordOTPSuccess ||
+                            current is ForgetPasswordOTPFailure ||
+                            current is ForgetPasswordOTPLoading,
+                        builder: (context, state) {
+                          return MyButton(
+                              text: (state is ForgetPasswordOTPLoading)
+                                  ? "loading".tr()
+                                  : "verify-otp".tr(),
+                              onTap: () {
+                                if (otpCode.length == 6) {
+                                  ForgetPasswordSecondRequest request =
+                                      ForgetPasswordSecondRequest(
+                                    email: widget.email,
+                                    code: int.parse(otpCode),
+                                  );
+                                  print(otpCode);
+                                  context
+                                      .read<ForgetPasswordOtpCubit>()
+                                      .forgetPasswordOTP(request);
+                                } else {
+                                  ToastHelper().showErrorToast(
+                                      context, "otp-incorrect".tr());
+                                }
+                              });
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+                    ],
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  GoRouter.of(context).go(AppRoutes.kLoginPage);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.arrow_back_rounded,
-                      size: 20.sp,
-                    ),
-                    SizedBox(width: 8.w),
-                    Text(
-                      "back-to-login".tr(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelSmall!
-                          .copyWith(fontWeight: FontWeight.w300),
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).go(AppRoutes.kLoginPage);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.arrow_back_rounded,
+                        size: 20.sp,
+                      ),
+                      SizedBox(width: 8.w),
+                      Text(
+                        "back-to-login".tr(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelSmall!
+                            .copyWith(fontWeight: FontWeight.w300),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

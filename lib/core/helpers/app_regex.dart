@@ -34,7 +34,7 @@ class AppRegex {
     return RegExp(r'^(?=.{8,})').hasMatch(password);
   }
 
-    static String obfuscateEmail(String email) {
+  static String obfuscateEmail(String email) {
     int atIndex = email.indexOf('@');
     if (atIndex == -1) return email; // Invalid email
 

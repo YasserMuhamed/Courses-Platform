@@ -3,7 +3,7 @@ import 'package:courses_platform/core/helpers/app_text_field.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
 import 'package:courses_platform/core/helpers/validators.dart';
-import 'package:courses_platform/features/Auth/manager/cubit/forget_password_cubit.dart';
+import 'package:courses_platform/features/Auth/data/manager/forget_password_first_cubit/forget_password_cubit.dart';
 import 'package:courses_platform/features/Auth/presentation/widgets/svg_icon.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -111,6 +111,9 @@ class _ForgetPasswordFirstPageState extends State<ForgetPasswordFirstPage> {
                             onTap: () {
                               if (forgetPasswordFormKey.currentState!
                                   .validate()) {
+                                // GoRouter.of(context).push(
+                                //     AppRoutes.kForgetPasswordSecondPage,
+                                //     extra: email);
                                 BlocProvider.of<ForgetPasswordCubit>(context)
                                     .forgetPassword(email);
                               } else {

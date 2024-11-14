@@ -18,6 +18,8 @@
   "go-to-sign-in": "Go to Sign In",
   "dont-have-account": "Don't have an account?",
   "forgot-password": "Forgot Password?",
+  "set-new-password": "Set New Password",
+  "must-be-8-chars": "Must be at least 8 characters",
   "no-worries": "No worries, we'll send you a reset link",
   "password-reset": "Password Reset",
   "reset-password": "Reset Password",

@@ -12,9 +12,9 @@ final class ForgetPasswordOtpInitial extends ForgetPasswordOtpState {}
 final class ForgetPasswordOTPLoading extends ForgetPasswordOtpState {}
 
 final class ForgetPasswordOTPSuccess extends ForgetPasswordOtpState {
-  final String message;
+  final bool status;
 
-  const ForgetPasswordOTPSuccess(this.message);
+  const ForgetPasswordOTPSuccess(this.status);
 }
 
 final class ForgetPasswordOTPFailure extends ForgetPasswordOtpState {

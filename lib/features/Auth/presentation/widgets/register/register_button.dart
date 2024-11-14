@@ -1,8 +1,8 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
+import 'package:courses_platform/features/Auth/data/manager/register_cubit/register_cubit.dart';
 import 'package:courses_platform/features/Auth/data/models/register_request.dart';
-import 'package:courses_platform/features/Auth/manager/cubit/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

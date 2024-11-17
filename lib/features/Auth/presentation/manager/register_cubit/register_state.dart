@@ -11,7 +11,10 @@ final class RegisterInitial extends RegisterState {}
 
 class AuthRegisterLoading extends RegisterState {}
 
-class AuthRegisterSuccess extends RegisterState {}
+class AuthRegisterSuccess extends RegisterState {
+  final RegisterResponse registerResponse;
+  const AuthRegisterSuccess(this.registerResponse);
+}
 
 class AuthRegisterFailure extends RegisterState {
   final String error;

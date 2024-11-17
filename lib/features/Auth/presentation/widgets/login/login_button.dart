@@ -1,4 +1,5 @@
 import 'package:courses_platform/configs/router/routes.dart';
+import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/shared_pref_helper.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
@@ -38,9 +39,15 @@ class LoginButton extends StatelessWidget {
           ToastHelper().showSuccessToast(context, "success-login".tr());
           SharedPrefHelper.setSecuredString(
               "userToken", state.loginResponse.data!.token!);
-          state.loginResponse.data!.user!.emailVerifiedAt == null
-              ? GoRouter.of(context).go(AppRoutes.kVerifyFirstPage)
-              : GoRouter.of(context).go(AppRoutes.kHomePage);
+          hasToken = true;
+          isAuthorized = true;
+
+          if (state.loginResponse.data!.user!.emailVerifiedAt == null) {
+            GoRouter.of(context).go(AppRoutes.kVerifyFirstPage);
+          } else {
+            GoRouter.of(context).go(AppRoutes.kHomePage);
+            isVerified = true;
+          }
         } else if (state is AuthLoginFailure) {
           ToastHelper().showErrorToast(context, state.error);
         }

@@ -1,5 +1,7 @@
 import 'package:courses_platform/configs/router/routes.dart';
+import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
+import 'package:courses_platform/core/helpers/shared_pref_helper.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
 import 'package:courses_platform/features/Auth/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:courses_platform/features/Auth/data/models/register_request.dart';
@@ -41,7 +43,10 @@ class RegisterButton extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthRegisterSuccess) {
           ToastHelper().showSuccessToast(context, "register-success".tr());
-
+          SharedPrefHelper.setSecuredString(
+              "userToken", state.registerResponse.data!.token!);
+          hasToken = true;
+          isAuthorized = true;
           GoRouter.of(context)
               .push(AppRoutes.kVerifySecondPage, extra: emailController.text);
         } else if (state is AuthRegisterFailure) {

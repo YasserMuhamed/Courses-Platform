@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:courses_platform/features/Auth/data/models/forget_password_second_request.dart';
+import 'package:courses_platform/features/Auth/data/models/email_and_otp_model.dart';
 import 'package:courses_platform/features/Auth/data/repositories/auth_repo.dart';
 import 'package:equatable/equatable.dart';
 
@@ -10,7 +10,7 @@ class ForgetPasswordResetCubit extends Cubit<ForgetPasswordResetState> {
   final AuthRepo authRepo;
 
   Future<void> passwordReset(
-      ForgetPasswordSecondRequest request, String newPassword) async {
+      EmailAndOtpModel request, String newPassword) async {
     emit(ForgetPasswordResetLoading());
     final response = await authRepo.passwordReset(request, newPassword);
     response.fold(

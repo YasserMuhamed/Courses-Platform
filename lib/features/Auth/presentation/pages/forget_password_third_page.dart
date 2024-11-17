@@ -4,22 +4,22 @@ import 'package:courses_platform/core/helpers/app_text_field.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
 import 'package:courses_platform/core/helpers/validators.dart';
-import 'package:courses_platform/features/Auth/data/manager/forget_password_third_cubit/forget_password_reset_cubit.dart';
-import 'package:courses_platform/features/Auth/data/models/forget_password_second_request.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/forget_password_third_cubit/forget_password_reset_cubit.dart';
+import 'package:courses_platform/features/Auth/data/models/email_and_otp_model.dart';
+import 'package:courses_platform/features/Auth/presentation/widgets/bottom_slider.dart';
 import 'package:courses_platform/features/Auth/presentation/widgets/svg_icon.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ForgetPasswordThirdPage extends StatefulWidget {
   const ForgetPasswordThirdPage({
     super.key,
     required this.request,
   });
-  final ForgetPasswordSecondRequest request;
+  final EmailAndOtpModel request;
   @override
   State<ForgetPasswordThirdPage> createState() =>
       _ForgetPasswordThirdPageState();
@@ -28,6 +28,7 @@ class ForgetPasswordThirdPage extends StatefulWidget {
 class _ForgetPasswordThirdPageState extends State<ForgetPasswordThirdPage> {
   GlobalKey<FormState> confirmNewPasswordFormKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  bool isObscure = true;
 
   PageController pageController = PageController(initialPage: 2);
   TextEditingController passwordController = TextEditingController();
@@ -88,6 +89,24 @@ class _ForgetPasswordThirdPageState extends State<ForgetPasswordThirdPage> {
                         AppValidators.passwordValidator(value),
                     controller: passwordController,
                     hintText: "new-password".tr(),
+                    obscureText: isObscure,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      },
+                      icon: isObscure
+                          ? Icon(
+                              Icons.visibility_off,
+                              size: 22.sp,
+                            )
+                          : Icon(
+                              Icons.visibility,
+                              size: 22.sp,
+                            ),
+                    ),
+                    maxLines: 1,
                   ),
                   SizedBox(height: 14.h),
                   Text(
@@ -104,6 +123,24 @@ class _ForgetPasswordThirdPageState extends State<ForgetPasswordThirdPage> {
                             value, passwordController.text),
                     controller: passwordConfirmationController,
                     hintText: "new-password-confirm".tr(),
+                    obscureText: isObscure,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      },
+                      icon: isObscure
+                          ? Icon(
+                              Icons.visibility_off,
+                              size: 22.sp,
+                            )
+                          : Icon(
+                              Icons.visibility,
+                              size: 22.sp,
+                            ),
+                    ),
+                    maxLines: 1,
                   ),
                   SizedBox(height: 30.h),
                   BlocConsumer<ForgetPasswordResetCubit,
@@ -136,7 +173,7 @@ class _ForgetPasswordThirdPageState extends State<ForgetPasswordThirdPage> {
                               context
                                   .read<ForgetPasswordResetCubit>()
                                   .passwordReset(
-                                      ForgetPasswordSecondRequest(
+                                      EmailAndOtpModel(
                                         email: widget.request.email,
                                         code: widget.request.code,
                                       ),
@@ -182,21 +219,7 @@ class _ForgetPasswordThirdPageState extends State<ForgetPasswordThirdPage> {
           ),
         ),
       )),
-      bottomNavigationBar: SizedBox(
-        height: 65.h,
-        child: Center(
-          child: SmoothPageIndicator(
-              effect: ExpandingDotsEffect(
-                dotColor: Theme.of(context).colorScheme.secondary,
-                activeDotColor: Theme.of(context).primaryColor,
-                dotHeight: 10.h,
-                dotWidth: 10.w,
-                spacing: 4.w,
-              ),
-              controller: pageController,
-              count: 3),
-        ),
-      ),
+      bottomNavigationBar: BottomSlider(pageController: pageController),
     );
   }
 }

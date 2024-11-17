@@ -1,5 +1,6 @@
 import 'package:courses_platform/core/error/failures.dart';
-import 'package:courses_platform/features/Auth/data/models/forget_password_second_request.dart';
+import 'package:courses_platform/features/Auth/data/models/current_user/current_user.dart';
+import 'package:courses_platform/features/Auth/data/models/email_and_otp_model.dart';
 import 'package:courses_platform/features/Auth/data/models/login_request.dart';
 import 'package:courses_platform/features/Auth/data/models/login_response/login_response.dart';
 import 'package:courses_platform/features/Auth/data/models/register_request.dart';
@@ -12,8 +13,13 @@ abstract class AuthRepo {
       RegisterRequest registerRequest);
   Future<Either<Failures, String>> forgetPasswordSendEmail(String email);
   Future<Either<Failures, bool>> forgetPasswordSendOTP(
-      ForgetPasswordSecondRequest forgetPasswordSecondRequest);
+      EmailAndOtpModel forgetPasswordSecondRequest);
   Future<Either<Failures, String>> passwordReset(
-      ForgetPasswordSecondRequest forgetPasswordSecondRequest,
-      String newPassword);
+      EmailAndOtpModel forgetPasswordSecondRequest, String newPassword);
+
+  Future<Either<Failures, String>> verifyUserSendEmail(String email);
+  Future<Either<Failures, String>> verifyUserSendOTP(
+      EmailAndOtpModel request);
+
+  Future<Either<String, CurrentUser>> getCurrentUser();
 }

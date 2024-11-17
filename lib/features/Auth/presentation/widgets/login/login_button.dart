@@ -2,7 +2,7 @@ import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/shared_pref_helper.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
-import 'package:courses_platform/features/Auth/data/manager/Login_cubit/login_cubit.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/Login_cubit/login_cubit.dart';
 import 'package:courses_platform/features/Auth/data/models/login_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,10 +35,12 @@ class LoginButton extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is AuthLoginSuccess) {
-          ToastHelper().showSuccessToast(context, "login-success".tr());
+          ToastHelper().showSuccessToast(context, "success-login".tr());
           SharedPrefHelper.setSecuredString(
               "userToken", state.loginResponse.data!.token!);
-          GoRouter.of(context).go(AppRoutes.kHomePage);
+          state.loginResponse.data!.user!.emailVerifiedAt == null
+              ? GoRouter.of(context).go(AppRoutes.kVerifyFirstPage)
+              : GoRouter.of(context).go(AppRoutes.kHomePage);
         } else if (state is AuthLoginFailure) {
           ToastHelper().showErrorToast(context, state.error);
         }

@@ -1,6 +1,7 @@
 import 'package:courses_platform/core/api/api_manager.dart';
 import 'package:courses_platform/core/error/failures.dart';
-import 'package:courses_platform/features/Auth/data/models/forget_password_second_request.dart';
+import 'package:courses_platform/features/Auth/data/models/current_user/current_user.dart';
+import 'package:courses_platform/features/Auth/data/models/email_and_otp_model.dart';
 import 'package:courses_platform/features/Auth/data/models/login_request.dart';
 import 'package:courses_platform/features/Auth/data/models/login_response/login_response.dart';
 import 'package:courses_platform/features/Auth/data/models/register_request.dart';
@@ -66,7 +67,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, bool>> forgetPasswordSendOTP(
-      ForgetPasswordSecondRequest request) async {
+      EmailAndOtpModel request) async {
     try {
       Response response = await apiManager.post(
           endPoint: "/password/code-valid",
@@ -88,8 +89,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, String>> passwordReset(
-      ForgetPasswordSecondRequest forgetPasswordSecondRequest,
-      String newPassword) async {
+      EmailAndOtpModel forgetPasswordSecondRequest, String newPassword) async {
     try {
       Response response =
           await apiManager.post(endPoint: "/password/reset", data: {
@@ -102,6 +102,51 @@ class AuthRepoImpl implements AuthRepo {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
       }
+      return Left(ServerFailure(error: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<String, CurrentUser>> getCurrentUser() async {
+    try {
+      Response response = await apiManager.get(endPoint: "/me");
+
+      CurrentUser currentUser = CurrentUser.fromJson(response.data);
+      return Right(currentUser);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<Failures, String>> verifyUserSendEmail(String email) async {
+    try {
+      Response response = await apiManager
+          .post(endPoint: "/email/send-code", data: {"email": email});
+
+      return Right(response.data['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(error: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, String>> verifyUserSendOTP(
+      EmailAndOtpModel request) async {
+    try {
+      Response response = await apiManager.post(
+          endPoint: "/email/code-valid",
+          data: {"email": request.email, "code": request.code});
+
+      return Right(response.data['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+
       return Left(ServerFailure(error: e.toString()));
     }
   }

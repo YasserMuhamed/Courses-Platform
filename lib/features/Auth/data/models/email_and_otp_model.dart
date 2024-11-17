@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-class ForgetPasswordSecondRequest extends Equatable {
+class EmailAndOtpModel extends Equatable {
   final String? email;
   final int? code;
 
-  const ForgetPasswordSecondRequest({this.email, this.code});
+  const EmailAndOtpModel({this.email, this.code});
 
-  factory ForgetPasswordSecondRequest.fromJson(Map<String, dynamic> json) {
-    return ForgetPasswordSecondRequest(
+  factory EmailAndOtpModel.fromJson(Map<String, dynamic> json) {
+    return EmailAndOtpModel(
       email: json['email'] as String?,
       code: json['code'] as int?,
     );

@@ -30,13 +30,14 @@ class DioFactory {
     dio?.options.headers = {
       'Accept': 'application/json',
       'Authorization':
-          'bearer ${await SharedPrefHelper.getString("userToken")}',
+          'Bearer ${await SharedPrefHelper.getSecuredString("userToken")}',
     };
   }
 
   static void setTokenIntoHeaderAfterLogin(String token) {
     dio?.options.headers = {
-      'Authorization': 'bearer $token',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
     };
     debugPrint("Token has been set into header");
   }

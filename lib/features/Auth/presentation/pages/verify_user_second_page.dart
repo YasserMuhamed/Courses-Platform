@@ -1,11 +1,11 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
+import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/helpers/app_regex.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
-import 'package:courses_platform/features/Auth/presentation/manager/forget_password_second_cubit/forget_password_otp_cubit.dart';
 import 'package:courses_platform/features/Auth/data/models/email_and_otp_model.dart';
-import 'package:courses_platform/features/Auth/presentation/widgets/bottom_slider.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/verify_user_otp_cubit/verify_user_otp_cubit.dart';
 import 'package:courses_platform/features/Auth/presentation/widgets/svg_icon.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -19,22 +19,20 @@ import 'dart:ui' as UI;
 
 UI.TextDirection direction = UI.TextDirection.ltr;
 
-class ForgetPasswordSecondPage extends StatefulWidget {
-  const ForgetPasswordSecondPage({super.key, required this.email});
+class VerifyUserSecondPage extends StatefulWidget {
+  const VerifyUserSecondPage({super.key, required this.email});
   final String email;
 
   @override
-  State<ForgetPasswordSecondPage> createState() =>
-      _ForgetPasswordSecondPageState();
+  State<VerifyUserSecondPage> createState() => _VerifyUserSecondPageState();
 }
 
-class _ForgetPasswordSecondPageState extends State<ForgetPasswordSecondPage> {
+class _VerifyUserSecondPageState extends State<VerifyUserSecondPage> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     String otpCode = '';
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-    PageController pageController = PageController(initialPage: 1);
 
     return Scaffold(
       body: SafeArea(
@@ -59,7 +57,7 @@ class _ForgetPasswordSecondPageState extends State<ForgetPasswordSecondPage> {
                       SizedBox(height: 20.h),
                       Center(
                         child: Text(
-                          'password-reset'.tr(),
+                          'verify-email'.tr(),
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                       ),
@@ -115,38 +113,35 @@ class _ForgetPasswordSecondPageState extends State<ForgetPasswordSecondPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 50.0),
                   child: Column(
                     children: [
-                      BlocConsumer<ForgetPasswordOtpCubit,
-                          ForgetPasswordOtpState>(
+                      BlocConsumer<VerifyUserOtpCubit, VerifyUserOtpState>(
                         listenWhen: (previous, current) =>
-                            current is ForgetPasswordOTPSuccess ||
-                            current is ForgetPasswordOTPFailure ||
-                            current is ForgetPasswordOTPLoading,
+                            current is VerifyUserOtpSuccess ||
+                            current is VerifyUserOtpFailure ||
+                            current is VerifyUserOtpLoading,
                         listener: (context, state) {
-                          if (state is ForgetPasswordOTPSuccess) {
-                            if (state.status == true) {
+                          if (state is VerifyUserOtpSuccess) {
+                            if (state.message == "لا يوجد") {
+                              ToastHelper().showErrorToast(
+                                  context, "already-verified".tr());
+                            } else {
                               ToastHelper().showSuccessToast(
                                   context, "otp-verified".tr());
-                              GoRouter.of(context).push(
-                                  AppRoutes.kForgetPasswordThirdPage,
-                                  extra: EmailAndOtpModel(
-                                      email: widget.email,
-                                      code: int.parse(otpCode)));
-                            } else {
-                              ToastHelper().showErrorToast(
-                                  context, "otp-incorrect".tr());
+                              isAuthorized = true;
+                              isVerified = true;
+                              GoRouter.of(context).push(AppRoutes.kHomePage);
                             }
-                          } else if (state is ForgetPasswordOTPFailure) {
+                          } else if (state is VerifyUserOtpFailure) {
                             ToastHelper()
                                 .showErrorToast(context, "otp-incorrect".tr());
                           }
                         },
                         buildWhen: (previous, current) =>
-                            current is ForgetPasswordOTPSuccess ||
-                            current is ForgetPasswordOTPFailure ||
-                            current is ForgetPasswordOTPLoading,
+                            current is VerifyUserOtpSuccess ||
+                            current is VerifyUserOtpFailure ||
+                            current is VerifyUserOtpLoading,
                         builder: (context, state) {
                           return MyButton(
-                              text: (state is ForgetPasswordOTPLoading)
+                              text: (state is VerifyUserOtpLoading)
                                   ? "loading".tr()
                                   : "verify-otp".tr(),
                               onTap: () {
@@ -155,9 +150,10 @@ class _ForgetPasswordSecondPageState extends State<ForgetPasswordSecondPage> {
                                     email: widget.email,
                                     code: int.parse(otpCode),
                                   );
+
                                   context
-                                      .read<ForgetPasswordOtpCubit>()
-                                      .forgetPasswordOTP(request);
+                                      .read<VerifyUserOtpCubit>()
+                                      .verifyUser(request);
                                 } else {
                                   ToastHelper().showErrorToast(
                                       context, "otp-incorrect".tr());
@@ -196,7 +192,6 @@ class _ForgetPasswordSecondPageState extends State<ForgetPasswordSecondPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomSlider(pageController: pageController),
     );
   }
 }

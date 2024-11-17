@@ -3,8 +3,7 @@ import 'package:courses_platform/core/helpers/app_text_field.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
 import 'package:courses_platform/core/helpers/validators.dart';
-import 'package:courses_platform/features/Auth/presentation/manager/forget_password_first_cubit/forget_password_cubit.dart';
-import 'package:courses_platform/features/Auth/presentation/widgets/bottom_slider.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/verify_user_email_cubit/verify_user_email_cubit.dart';
 import 'package:courses_platform/features/Auth/presentation/widgets/svg_icon.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +11,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class ForgetPasswordFirstPage extends StatefulWidget {
-  const ForgetPasswordFirstPage({super.key});
+class VerifyUserFirstPage extends StatefulWidget {
+  const VerifyUserFirstPage({super.key});
 
   @override
-  State<ForgetPasswordFirstPage> createState() =>
-      _ForgetPasswordFirstPageState();
+  State<VerifyUserFirstPage> createState() => _VerifyUserFirstPageState();
 }
 
-class _ForgetPasswordFirstPageState extends State<ForgetPasswordFirstPage> {
-  PageController pageController = PageController(initialPage: 0);
+class _VerifyUserFirstPageState extends State<VerifyUserFirstPage> {
   TextEditingController emailController = TextEditingController();
 
-  GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> verifyUserKey = GlobalKey<FormState>();
   String email = '';
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
@@ -37,7 +34,7 @@ class _ForgetPasswordFirstPageState extends State<ForgetPasswordFirstPage> {
             FocusScope.of(context).unfocus();
           },
           child: Form(
-            key: forgetPasswordFormKey,
+            key: verifyUserKey,
             autovalidateMode: autovalidateMode,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
@@ -55,14 +52,14 @@ class _ForgetPasswordFirstPageState extends State<ForgetPasswordFirstPage> {
                     SizedBox(height: 20.h),
                     Center(
                       child: Text(
-                        'forgot-password'.tr(),
+                        'verify-email'.tr(),
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                     ),
                     SizedBox(height: 10.h),
                     Center(
                       child: Text(
-                        "no-worries".tr(),
+                        "no-worries-verify".tr(),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
@@ -87,35 +84,30 @@ class _ForgetPasswordFirstPageState extends State<ForgetPasswordFirstPage> {
                       hintText: "enter-email".tr(),
                     ),
                     SizedBox(height: 14.h),
-                    BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+                    BlocConsumer<VerifyUserEmailCubit, VerifyUserEmailState>(
                       listenWhen: (previous, current) =>
-                          current is ForgetPasswordSuccess ||
-                          current is ForgetPasswordFailure ||
-                          current is ForgetPasswordLoading,
+                          current is VerifyUserEmailLoading ||
+                          current is VerifyUserEmailSuccess ||
+                          current is VerifyUserEmailFailure,
                       listener: (context, state) {
-                        if (state is ForgetPasswordSuccess) {
+                        if (state is VerifyUserEmailSuccess) {
                           ToastHelper().showSuccessToast(
-                              context, "reset-password-link-sent".tr());
-                          GoRouter.of(context).push(
-                              AppRoutes.kForgetPasswordSecondPage,
-                              extra: email);
-                        } else if (state is ForgetPasswordFailure) {
+                              context, "verify-email-sent".tr());
+                          GoRouter.of(context)
+                              .push(AppRoutes.kVerifySecondPage, extra: email);
+                        } else if (state is VerifyUserEmailFailure) {
                           ToastHelper().showErrorToast(context, state.error);
                         }
                       },
                       builder: (context, state) {
                         return MyButton(
-                            text: (state is ForgetPasswordLoading)
+                            text: (state is VerifyUserEmailLoading)
                                 ? "loading".tr()
-                                : "reset-password".tr(),
+                                : "verify".tr(),
                             onTap: () {
-                              if (forgetPasswordFormKey.currentState!
-                                  .validate()) {
-                                // GoRouter.of(context).push(
-                                //     AppRoutes.kForgetPasswordSecondPage,
-                                //     extra: email);
-                                BlocProvider.of<ForgetPasswordCubit>(context)
-                                    .forgetPassword(email);
+                              if (verifyUserKey.currentState!.validate()) {
+                                BlocProvider.of<VerifyUserEmailCubit>(context)
+                                    .verifyUser(email);
                               } else {
                                 setState(() {
                                   autovalidateMode =
@@ -158,7 +150,6 @@ class _ForgetPasswordFirstPageState extends State<ForgetPasswordFirstPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomSlider(pageController: pageController),
     );
   }
 }

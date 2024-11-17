@@ -39,7 +39,8 @@ class ServerFailure extends Failures {
       int statesCode, dynamic errorResponseBody) {
     if (statesCode >= 400 && statesCode <= 410 && statesCode != 404) {
       return ServerFailure(
-          error: parseErrorResponse(errorResponseBody as Map<String, dynamic>));
+          error: errorResponseBody["message"] ??
+              parseErrorResponse(errorResponseBody as Map<String, dynamic>));
     } else if (statesCode == 404) {
       return ServerFailure(error: 'Not found , Try again'.tr());
     } else if (statesCode == 500) {

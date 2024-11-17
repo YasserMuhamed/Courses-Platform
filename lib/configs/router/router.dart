@@ -1,24 +1,32 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/core/constants/login_constants.dart';
-import 'package:courses_platform/core/DI/locator.dart';
-import 'package:courses_platform/features/Auth/data/manager/Login_cubit/login_cubit.dart';
-import 'package:courses_platform/features/Auth/data/manager/forget_password_first_cubit/forget_password_cubit.dart';
-import 'package:courses_platform/features/Auth/data/manager/forget_password_second_cubit/forget_password_otp_cubit.dart';
-import 'package:courses_platform/features/Auth/data/manager/forget_password_third_cubit/forget_password_reset_cubit.dart';
-import 'package:courses_platform/features/Auth/data/manager/register_cubit/register_cubit.dart';
-import 'package:courses_platform/features/Auth/data/models/forget_password_second_request.dart';
+import 'package:courses_platform/core/service-locator/locator.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/Login_cubit/login_cubit.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/forget_password_first_cubit/forget_password_cubit.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/forget_password_second_cubit/forget_password_otp_cubit.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/forget_password_third_cubit/forget_password_reset_cubit.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/register_cubit/register_cubit.dart';
+import 'package:courses_platform/features/Auth/data/models/email_and_otp_model.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/verify_user_email_cubit/verify_user_email_cubit.dart';
+import 'package:courses_platform/features/Auth/presentation/manager/verify_user_otp_cubit/verify_user_otp_cubit.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_first_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_second_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_third_page.dart';
-import 'package:courses_platform/features/Auth/presentation/pages/home_page.dart';
+import 'package:courses_platform/features/Home/presentation/pages/home_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/login_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/register_page.dart';
+import 'package:courses_platform/features/Auth/presentation/pages/verify_user_first_page.dart';
+import 'package:courses_platform/features/Auth/presentation/pages/verify_user_second_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: isLoggedIn ? AppRoutes.kHomePage : AppRoutes.kLoginPage,
+    initialLocation: hasToken
+        ? (isAuthorized && isVerified)
+            ? AppRoutes.kHomePage
+            : AppRoutes.kLoginPage
+        : AppRoutes.kLoginPage,
     routes: [
       // *************************** Auth Routes ***************************
       GoRoute(
@@ -56,10 +64,28 @@ class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) => getIt<ForgetPasswordResetCubit>(),
           child: ForgetPasswordThirdPage(
-            request: state.extra as ForgetPasswordSecondRequest,
+            request: state.extra as EmailAndOtpModel,
           ),
         ),
       ),
+
+      GoRoute(
+        path: AppRoutes.kVerifyFirstPage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<VerifyUserEmailCubit>(),
+          child: const VerifyUserFirstPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.kVerifySecondPage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<VerifyUserOtpCubit>(),
+          child: VerifyUserSecondPage(
+            email: state.extra as String,
+          ),
+        ),
+      ),
+
       GoRoute(
         path: AppRoutes.kHomePage,
         builder: (context, state) => const HomePage(),

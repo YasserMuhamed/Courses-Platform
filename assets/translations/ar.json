@@ -70,5 +70,20 @@
   "Please check the internet and send again": "يرجى التحقق من الإنترنت وإعادة المحاولة",
   "here was an error , Please try again": "حدث خطأ، يرجى المحاولة مرة أخرى",
   "unKnown error": "خطأ غير معروف",
-  "Not found , Try again": "لم يتم العثور، يرجى المحاولة مرة أخرى"
+  "Not found , Try again": "لم يتم العثور، يرجى المحاولة مرة أخرى",
+  "courses": "المقررات",
+  "home-page": "الصفحة الرئيسية",
+  "profile": "الملف الشخصي",
+  "settings": "الإعدادات",
+  "notifications": "الإشعارات",
+  "language": "اللغة",
+  "dark-mode": "الوضع الداكن",
+  "light-mode": "الوضع الفاتح",
+  "theme": "السمة",
+  "system": "النظام",
+  "price": "السعر",
+  "lectures-count": "عدد المحاضرات",
+  "duration": "المدة"
+
+
 }

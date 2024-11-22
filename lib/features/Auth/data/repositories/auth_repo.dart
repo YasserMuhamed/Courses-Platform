@@ -9,6 +9,46 @@ import 'package:dartz/dartz.dart';
 
 abstract class AuthRepo {
   Future<Either<Failures, LoginResponse>> loginUsers(LoginRequest loginRequest);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   Future<Either<Failures, RegisterResponse>> registerUsers(
       RegisterRequest registerRequest);
   Future<Either<Failures, String>> forgetPasswordSendEmail(String email);

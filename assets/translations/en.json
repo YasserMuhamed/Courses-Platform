@@ -70,5 +70,18 @@
   "Please check the internet and send again": "Please check the internet and send again",
   "here was an error , Please try again": "There was an error, Please try again",
   "unKnown error": "UnKnown error",
-  "Not found , Try again": "Not found, Try again"
+  "Not found , Try again": "Not found, Try again",
+  "courses": "Courses",
+  "home-page": "Home Page",
+  "profile": "Profile",
+  "settings": "Settings",
+  "notifications": "Notifications",
+  "language": "Language",
+  "dark-mode": "Dark Mode",
+  "light-mode": "Light Mode",
+  "theme": "Theme",
+  "system": "System",
+  "price": "Price",
+  "lectures-count": "Lecture Count",
+  "duration": "Duration"
 }

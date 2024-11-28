@@ -8,7 +8,6 @@ class ToastHelper {
     Toastification().show(
       progressBarTheme: ProgressIndicatorThemeData(
         color: AppColors.errorColor,
-        strokeWidth: 1,
       ),
       type: ToastificationType.error,
       style: ToastificationStyle.flatColored,
@@ -61,7 +60,6 @@ class ToastHelper {
     Toastification().show(
       progressBarTheme: const ProgressIndicatorThemeData(
         color: AppColors.altTextColor,
-        strokeWidth: 1,
       ),
       type: ToastificationType.success,
       style: ToastificationStyle.flatColored,

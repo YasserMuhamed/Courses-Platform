@@ -76,8 +76,9 @@ class _HomePageState extends State<HomePage> {
                   itemCount: state.subCourses.data!.data!.length,
                   itemBuilder: (context, index) => GestureDetector(
                         onTap: () => GoRouter.of(context).push(
-                          AppRoutes.kCourseDetailsPage,
-                        ),
+                            AppRoutes.kCourseDetailsPage,
+                            extra:
+                                state.subCourses.data!.data![index].course!.id),
                         child: CustomCard(
                             imageURL: state
                                 .subCourses.data!.data![index].course!.image!,

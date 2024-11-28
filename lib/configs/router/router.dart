@@ -12,6 +12,7 @@ import 'package:courses_platform/features/Auth/presentation/manager/verify_user_
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_first_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_second_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_third_page.dart';
+import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/pages/course_details.dart';
 import 'package:courses_platform/features/Home/presentation/pages/home_page.dart';
@@ -98,7 +99,10 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutes.kCourseDetailsPage,
-        builder: (context, state) => const CourseDetails(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<CourseLectureCubit>(),
+          child: CourseDetails(id: state.extra as int),
+        ),
       ),
 
       // *************************** Dashboard && Product Routes ***************************

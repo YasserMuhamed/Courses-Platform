@@ -9,6 +9,7 @@ import 'package:courses_platform/features/Auth/data/repositories/auth_repo_impl.
 import 'package:courses_platform/features/Auth/presentation/manager/verify_user_email_cubit/verify_user_email_cubit.dart';
 import 'package:courses_platform/features/Auth/presentation/manager/verify_user_otp_cubit/verify_user_otp_cubit.dart';
 import 'package:courses_platform/features/Home/data/repositories/home_repo_impl.dart';
+import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
 
 import 'package:get_it/get_it.dart';
@@ -45,4 +46,7 @@ void getItSetup() {
       () => VerifyUserOtpCubit(getIt<AuthRepoImpl>()));
 
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt<HomeRepoImpl>()));
+
+  getIt.registerFactory<CourseLectureCubit>(
+      () => CourseLectureCubit(getIt<HomeRepoImpl>()));
 }

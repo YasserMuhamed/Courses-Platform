@@ -25,16 +25,18 @@ class ConfirmPasswordField extends StatelessWidget {
           value, passwordController.text),
       controller: confirmPasswordController,
       label: Text("confirm-password".tr()),
+      hintText: "enter-confirm-password".tr(),
+      floatingLabelBehavior: FloatingLabelBehavior.never,
       obscureText: obscureText,
       suffixIcon: IconButton(
         onPressed: toggleObscureText,
         icon: obscureText
             ? Icon(
-                Icons.visibility_off,
+                Icons.visibility_off_outlined,
                 size: 22.sp,
               )
             : Icon(
-                Icons.visibility,
+                Icons.visibility_outlined,
                 size: 22.sp,
               ),
       ),

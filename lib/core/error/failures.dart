@@ -28,6 +28,7 @@ class ServerFailure extends Failures {
       case DioExceptionType.unknown:
         errorMessage = 'unKnown error'.tr();
         break;
+      // ignore: unreachable_switch_default
       default:
         return ServerFailure(
             error: 'There was an error , Please try again'.tr());

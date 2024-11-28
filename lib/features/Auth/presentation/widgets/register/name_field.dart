@@ -12,7 +12,9 @@ class NameField extends StatelessWidget {
     return AppTextField(
       validator: AppValidators.nameValidator,
       controller: nameController,
+      floatingLabelBehavior: FloatingLabelBehavior.never,
       label: Text("name".tr()),
+      hintText: "enter-name".tr(),
     );
   }
 }

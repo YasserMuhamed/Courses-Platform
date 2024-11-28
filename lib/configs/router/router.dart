@@ -1,5 +1,4 @@
 import 'package:courses_platform/configs/router/routes.dart';
-import 'package:courses_platform/core/api/api_manager.dart';
 import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/service-locator/locator.dart';
 import 'package:courses_platform/features/Auth/presentation/manager/Login_cubit/login_cubit.dart';
@@ -13,14 +12,13 @@ import 'package:courses_platform/features/Auth/presentation/manager/verify_user_
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_first_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_second_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_third_page.dart';
-import 'package:courses_platform/features/Home/data/repositories/home_repo_impl.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/pages/course_details.dart';
 import 'package:courses_platform/features/Home/presentation/pages/home_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/login_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/register_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/verify_user_first_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/verify_user_second_page.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -96,6 +94,11 @@ class AppRouter {
           create: (context) => getIt<HomeCubit>(),
           child: const HomePage(),
         ),
+      ),
+
+      GoRoute(
+        path: AppRoutes.kCourseDetailsPage,
+        builder: (context, state) => const CourseDetails(),
       ),
 
       // *************************** Dashboard && Product Routes ***************************

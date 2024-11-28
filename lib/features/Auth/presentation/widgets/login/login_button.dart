@@ -1,4 +1,5 @@
 import 'package:courses_platform/configs/router/routes.dart';
+import 'package:courses_platform/core/api/dio_factory.dart';
 import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/shared_pref_helper.dart';
@@ -39,6 +40,8 @@ class LoginButton extends StatelessWidget {
           ToastHelper().showSuccessToast(context, "success-login".tr());
           SharedPrefHelper.setSecuredString(
               "userToken", state.loginResponse.data!.token!);
+          DioFactory.setTokenIntoHeaderAfterLogin(
+              state.loginResponse.data!.token!);
           hasToken = true;
           isAuthorized = true;
 

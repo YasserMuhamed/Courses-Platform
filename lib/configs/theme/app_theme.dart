@@ -15,11 +15,11 @@ ThemeData buildAppTheme(BuildContext context) {
   return ThemeData(
     fontFamily: fontFamily,
     scaffoldBackgroundColor: AppColors.backgroundColor,
-    primaryColor: AppColors.primaryColor,
-    brightness: Brightness.light,
-    textTheme: TextThemes.lightTextTheme,
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-    inputDecorationTheme: TextFormThemes.lightInputDecorationTheme,
+    // primaryColor: ,
+    brightness: Brightness.dark,
+    textTheme: TextThemes.darkTextTheme,
+    colorSchemeSeed: Colors.blue,
+    inputDecorationTheme: TextFormThemes.darkInputDecorationTheme,
     appBarTheme: AppBarTheme(
       elevation: 0,
       backgroundColor: Colors.transparent,

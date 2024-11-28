@@ -47,7 +47,9 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         const Logo(),
                         SizedBox(height: 26.h),
-                        EmailField(emailController: emailController),
+                        EmailField(
+                          emailController: emailController,
+                        ),
                         SizedBox(height: 16.h),
                         PasswordField(
                           passwordController: passwordController,

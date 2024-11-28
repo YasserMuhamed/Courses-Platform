@@ -13,6 +13,8 @@ class PhoneField extends StatelessWidget {
       validator: AppValidators.phoneValidator,
       controller: phoneController,
       label: Text("phone".tr()),
+      floatingLabelBehavior: FloatingLabelBehavior.never,
+      hintText: "enter-phone".tr(),
     );
   }
 }

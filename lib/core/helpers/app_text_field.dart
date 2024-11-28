@@ -35,7 +35,10 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: Theme.of(context).textTheme.titleSmall,
+      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+            color: AppColors.altTextColor,
+            fontSize: 16.sp,
+          ),
       maxLines: maxLines,
       focusNode: focusNode,
       minLines: minLines,
@@ -46,10 +49,14 @@ class AppTextField extends StatelessWidget {
       onChanged: onChange,
       autofocus: false,
       decoration: InputDecoration(
-        labelStyle: Theme.of(context)
-            .textTheme
-            .titleSmall!
-            .copyWith(color: AppColors.altTextColor),
+        labelStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+              color: AppColors.darkGrey,
+              fontSize: 16.sp,
+            ),
+        hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+              color: AppColors.darkGrey,
+              fontSize: 16.sp,
+            ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         suffixIconColor: WidgetStateColor.resolveWith((states) {
@@ -57,9 +64,9 @@ class AppTextField extends StatelessWidget {
             return Colors
                 .red; // Or any other color you want to use for error state
           } else if (states.contains(WidgetState.focused)) {
-            return Theme.of(context).primaryColor;
+            return AppColors.primaryColor;
           } else {
-            return Theme.of(context).disabledColor;
+            return AppColors.darkerGrey;
           }
         }),
         hintText: hintText,

@@ -11,9 +11,12 @@ class EmailField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppTextField(
+      suffixIcon: const Icon(Icons.email_outlined),
       validator: AppValidators.emailValidator,
       controller: emailController,
       label: Text("email".tr()),
+      floatingLabelBehavior: FloatingLabelBehavior.never,
+      hintText: "enter-email".tr(),
     );
   }
 }

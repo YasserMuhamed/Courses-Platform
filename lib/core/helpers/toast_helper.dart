@@ -6,6 +6,10 @@ import 'package:easy_localization/easy_localization.dart';
 class ToastHelper {
   void showErrorToast(BuildContext context, String error) {
     Toastification().show(
+      progressBarTheme: ProgressIndicatorThemeData(
+        color: AppColors.errorColor,
+        strokeWidth: 1,
+      ),
       type: ToastificationType.error,
       style: ToastificationStyle.flatColored,
       autoCloseDuration: const Duration(seconds: 5),
@@ -23,8 +27,8 @@ class ToastHelper {
       icon: const Icon(Icons.error),
       showIcon: true,
       primaryColor: Colors.red,
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
+      backgroundColor: AppColors.backgroundColor,
+      foregroundColor: AppColors.altTextColor,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       borderRadius: BorderRadius.circular(12),
@@ -55,6 +59,10 @@ class ToastHelper {
 
   void showSuccessToast(BuildContext context, String message) {
     Toastification().show(
+      progressBarTheme: const ProgressIndicatorThemeData(
+        color: AppColors.altTextColor,
+        strokeWidth: 1,
+      ),
       type: ToastificationType.success,
       style: ToastificationStyle.flatColored,
       autoCloseDuration: const Duration(seconds: 5),
@@ -72,8 +80,8 @@ class ToastHelper {
       icon: const Icon(Icons.check),
       showIcon: true,
       primaryColor: AppColors.primaryColor,
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
+      backgroundColor: AppColors.backgroundColor,
+      foregroundColor: AppColors.altTextColor,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       borderRadius: BorderRadius.circular(12),

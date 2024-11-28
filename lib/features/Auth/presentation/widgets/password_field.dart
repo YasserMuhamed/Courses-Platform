@@ -19,6 +19,8 @@ class PasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppTextField(
+      floatingLabelBehavior: FloatingLabelBehavior.never,
+      hintText: "enter-password".tr(),
       validator: AppValidators.passwordValidator,
       controller: passwordController,
       label: Text("password".tr()),
@@ -27,11 +29,11 @@ class PasswordField extends StatelessWidget {
         onPressed: toggleObscureText,
         icon: obscureText
             ? Icon(
-                Icons.visibility_off,
+                Icons.visibility_off_outlined,
                 size: 22.sp,
               )
             : Icon(
-                Icons.visibility,
+                Icons.visibility_outlined,
                 size: 22.sp,
               ),
       ),

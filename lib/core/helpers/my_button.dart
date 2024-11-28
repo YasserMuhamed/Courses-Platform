@@ -1,3 +1,4 @@
+import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,7 +22,7 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: color ?? Theme.of(context).primaryColor,
+      color: color ?? AppColors.primaryColor,
       borderRadius: BorderRadius.circular(6.r),
       elevation: 5,
       child: MaterialButton(

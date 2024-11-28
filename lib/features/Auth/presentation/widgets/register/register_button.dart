@@ -1,4 +1,5 @@
 import 'package:courses_platform/configs/router/routes.dart';
+import 'package:courses_platform/core/api/dio_factory.dart';
 import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/shared_pref_helper.dart';
@@ -45,6 +46,8 @@ class RegisterButton extends StatelessWidget {
           ToastHelper().showSuccessToast(context, "register-success".tr());
           SharedPrefHelper.setSecuredString(
               "userToken", state.registerResponse.data!.token!);
+          DioFactory.setTokenIntoHeaderAfterLogin(
+              state.registerResponse.data!.token!);
           hasToken = true;
           isAuthorized = true;
           GoRouter.of(context)

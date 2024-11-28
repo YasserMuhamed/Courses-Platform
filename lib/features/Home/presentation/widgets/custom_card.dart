@@ -81,10 +81,10 @@ class _CustomCardState extends State<CustomCard> {
                       });
                     },
                     child: Text(
-                      widget.courseDescription.length > 50
+                      widget.courseDescription.length > 100
                           ? isExpanded
                               ? widget.courseDescription
-                              : '${widget.courseDescription.substring(0, 50)}...'
+                              : '${widget.courseDescription.substring(0, 100)}...'
                           : widget.courseDescription,
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: AppColors.darkGrey,

@@ -126,7 +126,7 @@ class _VerifyUserSecondPageState extends State<VerifyUserSecondPage> {
                             } else {
                               ToastHelper().showSuccessToast(
                                   context, "otp-verified".tr());
-                           
+
                               isVerified = true;
                               GoRouter.of(context).push(AppRoutes.kHomePage);
                             }

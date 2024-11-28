@@ -10,56 +10,19 @@ import 'package:dartz/dartz.dart';
 abstract class AuthRepo {
   Future<Either<Failures, LoginResponse>> loginUsers(LoginRequest loginRequest);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   Future<Either<Failures, RegisterResponse>> registerUsers(
       RegisterRequest registerRequest);
+
   Future<Either<Failures, String>> forgetPasswordSendEmail(String email);
+
   Future<Either<Failures, bool>> forgetPasswordSendOTP(
       EmailAndOtpModel forgetPasswordSecondRequest);
+
   Future<Either<Failures, String>> passwordReset(
       EmailAndOtpModel forgetPasswordSecondRequest, String newPassword);
 
   Future<Either<Failures, String>> verifyUserSendEmail(String email);
-  Future<Either<Failures, String>> verifyUserSendOTP(
-      EmailAndOtpModel request);
+  Future<Either<Failures, String>> verifyUserSendOTP(EmailAndOtpModel request);
 
   Future<Either<String, CurrentUser>> getCurrentUser();
 }

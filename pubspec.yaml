@@ -53,6 +53,7 @@ dependencies:
   provider: ^6.1.2
   shared_preferences: ^2.3.3
   shimmer: ^3.0.0
+  slimy_card_plus: ^1.0.5
   smooth_page_indicator: ^1.2.0+3
   toastification: ^2.3.0
 

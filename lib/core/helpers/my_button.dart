@@ -7,14 +7,16 @@ class MyButton extends StatelessWidget {
   final Color? color;
   final Widget? widget;
   final double? height;
-  const MyButton({
-    super.key,
-    required this.text,
-    required this.onTap,
-    this.color,
-    this.widget,
-    this.height,
-  });
+  final double? width;
+
+  const MyButton(
+      {super.key,
+      required this.text,
+      required this.onTap,
+      this.color,
+      this.widget,
+      this.height,
+      this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class MyButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(6.r),
       elevation: 5,
       child: MaterialButton(
-        minWidth: double.infinity,
+        minWidth: width ?? double.infinity,
         height: 26.h,
         onPressed: onTap,
         child: widget ??

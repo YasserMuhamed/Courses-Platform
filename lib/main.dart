@@ -19,11 +19,10 @@ void main() async {
     checkIfUserAuthorizedAndVerified()
   ]);
 
-  // await getUserData();
   Logger().i("User has token: $hasToken");
   Logger().i("User is authorized: $isAuthorized");
   Logger().i("User is verified: $isVerified");
-  // await SharedPrefHelper.clearAllSecuredData();
+
   Bloc.observer = MyBlocObserver();
   runApp(
     EasyLocalization(

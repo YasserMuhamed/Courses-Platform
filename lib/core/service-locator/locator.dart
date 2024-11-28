@@ -8,6 +8,8 @@ import 'package:courses_platform/features/Auth/presentation/manager/register_cub
 import 'package:courses_platform/features/Auth/data/repositories/auth_repo_impl.dart';
 import 'package:courses_platform/features/Auth/presentation/manager/verify_user_email_cubit/verify_user_email_cubit.dart';
 import 'package:courses_platform/features/Auth/presentation/manager/verify_user_otp_cubit/verify_user_otp_cubit.dart';
+import 'package:courses_platform/features/Home/data/repositories/home_repo_impl.dart';
+import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
 
 import 'package:get_it/get_it.dart';
 
@@ -18,6 +20,9 @@ void getItSetup() {
 
   getIt.registerLazySingleton<AuthRepoImpl>(
       () => AuthRepoImpl(apiManager: getIt<ApiManager>()));
+
+  getIt.registerLazySingleton<HomeRepoImpl>(
+      () => HomeRepoImpl(apiManager: getIt<ApiManager>()));
 
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<AuthRepoImpl>()));
 
@@ -38,4 +43,6 @@ void getItSetup() {
 
   getIt.registerFactory<VerifyUserOtpCubit>(
       () => VerifyUserOtpCubit(getIt<AuthRepoImpl>()));
+
+  getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt<HomeRepoImpl>()));
 }

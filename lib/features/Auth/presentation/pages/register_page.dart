@@ -73,10 +73,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         SizedBox(height: 16.h),
                         ConfirmPasswordField(
                             passwordController: passwordController,
-                            obscureText: obscureText2,
+                            obscureText: obscureText,
                             toggleObscureText: () {
                               setState(() {
-                                obscureText2 = !obscureText2;
+                                obscureText = !obscureText;
                               });
                             },
                             confirmPasswordController:

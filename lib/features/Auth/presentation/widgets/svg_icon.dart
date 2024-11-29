@@ -15,14 +15,16 @@ class SvgIcon extends StatelessWidget {
         color: AppColors.backgroundColor,
         boxShadow: [
           BoxShadow(
-            color: AppColors.altTextColor.withOpacity(.1),
-            blurRadius: 10,
+            color: AppColors.altTextColor.withOpacity(.05),
+            blurRadius: 25.r,
             offset: const Offset(0, 5),
           ),
         ],
         borderRadius: BorderRadius.circular(10),
       ),
       child: SvgPicture.asset(
+        colorFilter:
+            const ColorFilter.mode(AppColors.altTextColor, BlendMode.srcIn),
         path,
         width: 45.w,
         height: 45.h,

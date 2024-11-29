@@ -27,6 +27,7 @@ class TextFormThemes {
   static InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
     // fillColor: const Color.fromARGB(255, 23, 23, 23),
     // filled: true,
+
     suffixIconColor: AppColors.lightGrey,
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
@@ -39,6 +40,10 @@ class TextFormThemes {
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
       borderSide: BorderSide(color: AppColors.primaryColor, width: 1.w),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(radius),
+      borderSide: BorderSide(color: AppColors.errorColor, width: 1.w),
     ),
   );
 }

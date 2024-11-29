@@ -46,12 +46,14 @@ class ToastHelper {
       dragToClose: true,
       applyBlurEffect: false,
       callbacks: ToastificationCallbacks(
-        onTap: (toastItem) => print('Toast ${toastItem.id} tapped'),
+        // ignore: avoid_debugPrint
+        onTap: (toastItem) => debugPrint('Toast ${toastItem.id} tapped'),
         onCloseButtonTap: (toastItem) =>
-            print('Toast ${toastItem.id} close button tapped'),
+            debugPrint('Toast ${toastItem.id} close button tapped'),
         onAutoCompleteCompleted: (toastItem) =>
-            print('Toast ${toastItem.id} auto complete completed'),
-        onDismissed: (toastItem) => print('Toast ${toastItem.id} dismissed'),
+            debugPrint('Toast ${toastItem.id} auto complete completed'),
+        onDismissed: (toastItem) =>
+            debugPrint('Toast ${toastItem.id} dismissed'),
       ),
     );
   }
@@ -98,12 +100,13 @@ class ToastHelper {
       dragToClose: true,
       applyBlurEffect: false,
       callbacks: ToastificationCallbacks(
-        onTap: (toastItem) => print('Toast ${toastItem.id} tapped'),
+        onTap: (toastItem) => debugPrint('Toast ${toastItem.id} tapped'),
         onCloseButtonTap: (toastItem) =>
-            print('Toast ${toastItem.id} close button tapped'),
+            debugPrint('Toast ${toastItem.id} close button tapped'),
         onAutoCompleteCompleted: (toastItem) =>
-            print('Toast ${toastItem.id} auto complete completed'),
-        onDismissed: (toastItem) => print('Toast ${toastItem.id} dismissed'),
+            debugPrint('Toast ${toastItem.id} auto complete completed'),
+        onDismissed: (toastItem) =>
+            debugPrint('Toast ${toastItem.id} dismissed'),
       ),
     );
   }

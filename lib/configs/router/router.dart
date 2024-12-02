@@ -12,6 +12,7 @@ import 'package:courses_platform/features/Auth/presentation/manager/verify_user_
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_first_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_second_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_third_page.dart';
+import 'package:courses_platform/features/Home/data/models/course_lecture/item.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/pages/course_details.dart';
@@ -20,6 +21,7 @@ import 'package:courses_platform/features/Auth/presentation/pages/login_page.dar
 import 'package:courses_platform/features/Auth/presentation/pages/register_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/verify_user_first_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/verify_user_second_page.dart';
+import 'package:courses_platform/features/Home/presentation/pages/lecture_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -104,6 +106,13 @@ class AppRouter {
           child: CourseDetails(id: state.extra as int),
         ),
       ),
+
+      GoRoute(
+        path: AppRoutes.kLectureItem,
+        builder: (context, state) => LectureItem(
+          file: state.extra as Item,
+        ),
+      )
 
       // *************************** Dashboard && Product Routes ***************************
 

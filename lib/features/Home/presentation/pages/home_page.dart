@@ -1,6 +1,8 @@
 import 'package:courses_platform/configs/localization/localization_service.dart';
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
+import 'package:courses_platform/core/constants/login_constants.dart';
+import 'package:courses_platform/core/helpers/shared_pref_helper.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/widgets/custom_card.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -48,7 +50,12 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           IconButton(
-              onPressed: () {
+              onPressed: () async {
+                SharedPrefHelper.clearAllSecuredData();
+                hasToken = false;
+                isAuthorized = false;
+                isVerified = false;
+
                 GoRouter.of(context).pushReplacement(AppRoutes.kLoginPage);
               },
               icon: Icon(
@@ -67,12 +74,17 @@ class _HomePageState extends State<HomePage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is HomeFailure) {
-              return Center(
-                child: Text(state.message),
+              return ListView(
+                children: [
+                  Center(
+                    child: Text(state.message),
+                  ),
+                ],
               );
             } else if (state is HomeSuccess) {
               return ListView.builder(
-                  physics: const BouncingScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics()),
                   itemCount: state.subCourses.data!.data!.length,
                   itemBuilder: (context, index) => GestureDetector(
                         onTap: () => GoRouter.of(context).push(

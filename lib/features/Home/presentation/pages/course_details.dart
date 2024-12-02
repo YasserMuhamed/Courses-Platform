@@ -1,9 +1,11 @@
+import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class CourseDetails extends StatefulWidget {
   const CourseDetails({super.key, required this.id});
@@ -14,6 +16,8 @@ class CourseDetails extends StatefulWidget {
 }
 
 class _CourseDetailsState extends State<CourseDetails> {
+  Set<int> expandedIndices = {};
+
   @override
   void initState() {
     super.initState();
@@ -59,31 +63,45 @@ class _CourseDetailsState extends State<CourseDetails> {
                       Padding(
                         padding: EdgeInsets.symmetric(
                             vertical: 6.h, horizontal: 4.w),
-                        child: ListTile(
+                        child: ExpansionTile(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          tileColor: AppColors.primaryColor,
+                          collapsedShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          backgroundColor: AppColors.primaryColor,
+                          collapsedBackgroundColor: AppColors.primaryColor,
                           trailing: Container(
                             decoration: BoxDecoration(
                               color: AppColors.altTextColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.arrow_forward_ios_rounded,
-                                  color: AppColors.primaryColor,
-                                )),
+                            child: Icon(
+                              expandedIndices.contains(index)
+                                  ? Icons.keyboard_arrow_down_rounded
+                                  : Icons.keyboard_arrow_up_rounded,
+                              color: AppColors.primaryColor,
+                            ),
                           ),
-                          contentPadding: const EdgeInsets.all(12),
-                          title: Text(state.courseLecture.data![index].title!,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge!
-                                  .copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  )),
+                          onExpansionChanged: (expanded) {
+                            setState(() {
+                              if (expanded) {
+                                expandedIndices.add(index);
+                              } else {
+                                expandedIndices.remove(index);
+                              }
+                            });
+                          },
+                          title: Text(
+                            state.courseLecture.data![index].title!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge!
+                                .copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
                           subtitle: Text(
                             "${state.courseLecture.data![index].itemsCount!} Lectures",
                             style: Theme.of(context)
@@ -94,6 +112,79 @@ class _CourseDetailsState extends State<CourseDetails> {
                                   fontWeight: FontWeight.w200,
                                 ),
                           ),
+                          children: state.courseLecture.data![index].items!
+                              .asMap()
+                              .map(
+                                (itemIndex, item) => MapEntry(
+                                  itemIndex,
+                                  Column(
+                                    children: [
+                                      ListTile(
+                                        trailing: MaterialButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          height: 30.h,
+                                          color: AppColors.textColor
+                                              .withOpacity(1),
+                                          onPressed: () {
+                                            GoRouter.of(context).push(
+                                                AppRoutes.kLectureItem,
+                                                extra: item);
+                                          },
+                                          child: Text(
+                                            'show'.tr(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelSmall!
+                                                .copyWith(
+                                                  color: AppColors
+                                                      .darkPrimaryColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                        tileColor: AppColors.darkPrimaryColor,
+                                        contentPadding: EdgeInsets.symmetric(
+                                            horizontal: 16.w, vertical: 4.h),
+                                        title: Text(
+                                          item.title ?? '',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium!
+                                              .copyWith(
+                                                color: AppColors.altTextColor,
+                                              ),
+                                        ),
+                                        subtitle: Text(
+                                          !item.fileSize!.isNotEmpty
+                                              ? ''
+                                              : "${item.fileSize} MB",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall!
+                                              .copyWith(
+                                                color: AppColors.altTextColor
+                                                    .withAlpha(150),
+                                              ),
+                                        ),
+                                      ),
+                                      if (itemIndex !=
+                                          state.courseLecture.data![index]
+                                                  .items!.length -
+                                              1)
+                                        Container(
+                                          width: double.infinity,
+                                          height: 1,
+                                          color: AppColors.textColor,
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                              .values
+                              .toList(),
                         ),
                       ),
                     ],

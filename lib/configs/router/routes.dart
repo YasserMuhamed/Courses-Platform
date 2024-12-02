@@ -10,4 +10,5 @@ class AppRoutes {
 
   static const kHomePage = '/homePage';
   static const kCourseDetailsPage = '/courseDetailsPage';
+  static const kLectureItem = '/lectureItem';
 }

@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Primary color: Main color for buttons, headers, and important highlights
-  static const Color primaryColor = Color(0xFF0E64D2); // Bright Blue
+  static const Color primaryColor = Color(0xFF0E64D2);
+
+  // Bright Blue
+  static const Color darkPrimaryColor =
+      Color.fromARGB(255, 21, 89, 177); // Bright Blue
+  static const Color darkerPrimaryColor =
+      Color.fromARGB(255, 15, 61, 121); // Bright Blue
 
   // Secondary color: For secondary buttons, links, and other interactive elements
   static const Color secondaryColor = Color(0xFF007ACC); // Medium Blue

@@ -33,11 +33,11 @@ class ConfirmPasswordField extends StatelessWidget {
         icon: obscureText
             ? Icon(
                 Icons.visibility_off_outlined,
-                size: 22.sp,
+                size: 20.sp,
               )
             : Icon(
                 Icons.visibility_outlined,
-                size: 22.sp,
+                size: 20.sp,
               ),
       ),
       maxLines: 1,

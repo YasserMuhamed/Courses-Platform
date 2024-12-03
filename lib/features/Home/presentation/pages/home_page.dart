@@ -4,7 +4,7 @@ import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/helpers/shared_pref_helper.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/widgets/custom_card.dart';
+import 'package:courses_platform/features/Home/presentation/widgets/home-page/home_card_builder.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,9 +35,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 5,
+        elevation: 4,
         title: Text("courses".tr(),
-            style: Theme.of(context).textTheme.titleLarge!.copyWith()),
+            style: Theme.of(context).textTheme.titleMedium!),
         actions: [
           IconButton(
             onPressed: () {
@@ -82,23 +82,16 @@ class _HomePageState extends State<HomePage> {
                 ],
               );
             } else if (state is HomeSuccess) {
-              return ListView.builder(
-                  physics: const AlwaysScrollableScrollPhysics(
-                      parent: BouncingScrollPhysics()),
-                  itemCount: state.subCourses.data!.data!.length,
-                  itemBuilder: (context, index) => GestureDetector(
-                        onTap: () => GoRouter.of(context).push(
-                            AppRoutes.kCourseDetailsPage,
-                            extra:
-                                state.subCourses.data!.data![index].course!.id),
-                        child: CustomCard(
-                            imageURL: state
-                                .subCourses.data!.data![index].course!.image!,
-                            courseName: state
-                                .subCourses.data!.data![index].course!.title!,
-                            courseDescription: state.subCourses.data!
-                                .data![index].course!.description!),
-                      ));
+              return state.subCourses.data!.data!.isEmpty
+                  ? Center(
+                      child: Text(
+                        "no-course-found".tr(),
+                        style: Theme.of(context).textTheme.titleMedium!,
+                      ),
+                    )
+                  : HomeCardsBuilder(
+                      subCourses: state.subCourses,
+                    );
             } else {
               return const SizedBox();
             }

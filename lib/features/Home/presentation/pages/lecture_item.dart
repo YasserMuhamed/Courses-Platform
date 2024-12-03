@@ -13,11 +13,10 @@ class LectureItem extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(20),
-          children: const [
+          children: [
             Center(
               child: VideoPlayerView(
-                url:
-                    "http://45.65.114.115/uploads/lectures_items/omar_1733174112_674e2360e34b9.mp4v",
+                url: file.file!,
                 dataSourceType: DataSourceType.network,
               ),
             ),

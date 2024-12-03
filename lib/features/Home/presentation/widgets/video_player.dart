@@ -36,7 +36,7 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
       case DataSourceType.network:
         {
           _videoPlayerController =
-              VideoPlayerController.networkUrl(Uri.parse(widget.url));
+              VideoPlayerController.networkUrl(Uri.parse(widget.url),videoPlayerOptions: VideoPlayerOptions());
           Logger().i("Video URL: ${widget.url}");
           setState(
             () => _chewieController = ChewieController(

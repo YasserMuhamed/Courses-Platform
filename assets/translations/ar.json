@@ -69,6 +69,12 @@
   "confirm": "تأكيد",
   "search": "بحث",
   "search-no-results": "لا توجد نتائج للبحث",
+  "searching": "جاري البحث...",
+  "no-internet": "لا يوجد اتصال بالإنترنت",
+  "try-again": "حاول مرة أخرى",
+  "no-course-found": "للأسف، لم يتم العثور على مقررات",
+  "no-lectures-found": "لم يتم العثور على محاضرات",
+  "show": "عرض",
   "there was an error": "حدث خطأ",
   "server error": "خطأ في الخادم",
   "Please check the internet and send again": "يرجى التحقق من الإنترنت وإعادة المحاولة",
@@ -89,6 +95,4 @@
   "price": "السعر",
   "lectures-count": "عدد المحاضرات",
   "duration": "المدة"
-
-
 }

@@ -68,6 +68,7 @@
   "info": "Info",
   "confirm": "Confirm",
   "search": "Search",
+  "face-error-video-try-again": "There was an error playing the video, please try again",
   "search-no-results": "No search results",
   "searching": "Searching...",
   "no-internet": "No internet connection",

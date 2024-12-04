@@ -1,7 +1,6 @@
 import 'package:courses_platform/features/Home/data/models/course_lecture/item.dart';
-import 'package:courses_platform/features/Home/presentation/widgets/video_player.dart';
+import 'package:courses_platform/features/Home/presentation/widgets/cache_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 
 class LectureItem extends StatelessWidget {
   const LectureItem({super.key, required this.file});
@@ -11,16 +10,8 @@ class LectureItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(20),
-          children: [
-            Center(
-              child: VideoPlayerView(
-                url: file.file!,
-                dataSourceType: DataSourceType.network,
-              ),
-            ),
-          ],
+        child: Center(
+          child: CachedVideoWidget(videoUrl: file.file!),
         ),
       ),
     );

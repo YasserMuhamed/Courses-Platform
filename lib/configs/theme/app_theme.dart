@@ -24,11 +24,11 @@ ThemeData buildAppTheme(BuildContext context) {
       elevation: 0,
       backgroundColor: Colors.transparent,
       titleTextStyle: TextStyle(
-        color: AppColors.primaryColor,
+        color: AppColors.altTextColor,
         fontSize: 18.sp,
         fontFamily: fontFamily,
       ),
-      iconTheme: IconThemeData(color: AppColors.primaryColor, size: 18.sp),
+      iconTheme: IconThemeData(color: AppColors.altTextColor, size: 18.sp),
     ),
   );
 }

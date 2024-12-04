@@ -157,17 +157,39 @@ class _CourseDetailsState extends State<CourseDetails> {
                                                 color: AppColors.altTextColor,
                                               ),
                                         ),
-                                        subtitle: Text(
-                                          !item.fileSize!.isNotEmpty
-                                              ? ''
-                                              : "${item.fileSize} MB",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall!
-                                              .copyWith(
-                                                color: AppColors.altTextColor
-                                                    .withAlpha(150),
-                                              ),
+                                        subtitle: Row(
+                                          children: [
+                                            item.fileType == 'video'
+                                                ? Icon(
+                                                    Icons
+                                                        .play_circle_fill_rounded,
+                                                    color: AppColors
+                                                        .altTextColor
+                                                        .withAlpha(150),
+                                                    size: 16.sp,
+                                                  )
+                                                : Icon(
+                                                    Icons.file_copy_rounded,
+                                                    color: AppColors
+                                                        .altTextColor
+                                                        .withAlpha(150),
+                                                    size: 16.sp,
+                                                  ),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              !item.fileSize!.isNotEmpty
+                                                  ? ''
+                                                  : "${item.fileSize} ${'mb'.tr()}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelSmall!
+                                                  .copyWith(
+                                                    color: AppColors
+                                                        .altTextColor
+                                                        .withAlpha(150),
+                                                  ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       if (itemIndex !=

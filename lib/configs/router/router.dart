@@ -110,7 +110,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.kLectureItem,
         builder: (context, state) => LectureItem(
-          file: state.extra as Item,
+          item: state.extra as Item,
         ),
       )
 

@@ -1,19 +1,19 @@
 import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:courses_platform/configs/theme/text_form_themes.dart';
 import 'package:courses_platform/configs/theme/text_themes.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:easy_localization/easy_localization.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 ThemeData buildAppTheme(BuildContext context) {
-  final isArabic = context.locale.languageCode == "ar";
-  final fontFamily = isArabic
-      ? GoogleFonts.cairo().fontFamily
-      : GoogleFonts.inter().fontFamily;
+  // final isArabic = context.locale.languageCode == "ar";
+  // final fontFamily = isArabic
+  //     ? GoogleFonts.cairo().fontFamily
+  //     : GoogleFonts.inter().fontFamily;
 
   return ThemeData(
-    fontFamily: fontFamily,
+    fontFamily: "Cairo",
     scaffoldBackgroundColor: AppColors.backgroundColor,
     // primaryColor: ,
     brightness: Brightness.dark,
@@ -26,7 +26,7 @@ ThemeData buildAppTheme(BuildContext context) {
       titleTextStyle: TextStyle(
         color: AppColors.altTextColor,
         fontSize: 18.sp,
-        fontFamily: fontFamily,
+        fontFamily: "Cairo",
       ),
       iconTheme: IconThemeData(color: AppColors.altTextColor, size: 18.sp),
     ),

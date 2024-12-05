@@ -107,18 +107,6 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<String, CurrentUser>> getCurrentUser() async {
-    try {
-      Response response = await apiManager.get(endPoint: "/me");
-
-      CurrentUser currentUser = CurrentUser.fromJson(response.data);
-      return Right(currentUser);
-    } catch (e) {
-      return Left(e.toString());
-    }
-  }
-
-  @override
   Future<Either<Failures, String>> verifyUserSendEmail(String email) async {
     try {
       Response response = await apiManager
@@ -148,6 +136,18 @@ class AuthRepoImpl implements AuthRepo {
       }
 
       return Left(ServerFailure(error: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<String, CurrentUser>> getCurrentUser() async {
+    try {
+      Response response = await apiManager.get(endPoint: "/me");
+
+      CurrentUser currentUser = CurrentUser.fromJson(response.data);
+      return Right(currentUser);
+    } catch (e) {
+      return Left(e.toString());
     }
   }
 }

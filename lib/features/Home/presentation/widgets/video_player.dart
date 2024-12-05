@@ -44,6 +44,7 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
               aspectRatio: 16 / 9,
             ),
           );
+          Logger().i("Video URL: ${widget.url}");
         }
         break;
       case DataSourceType.file:
@@ -74,19 +75,9 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          widget.dataSourceType.name.toUpperCase(),
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        const Divider(),
-        AspectRatio(
-          aspectRatio: 16 / 9,
-          child: Chewie(controller: _chewieController),
-        ),
-      ],
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: Chewie(controller: _chewieController),
     );
   }
 }

@@ -69,6 +69,7 @@ class _PDFPageState extends State<PDFPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.name),
+        centerTitle: true,
       ),
       body: localPath != null
           ? PDFView(

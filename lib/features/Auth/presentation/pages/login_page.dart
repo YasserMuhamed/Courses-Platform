@@ -21,11 +21,14 @@ class _LoginPageState extends State<LoginPage> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   TextEditingController emailController = TextEditingController();
+
   FocusNode emailFocusNode = FocusNode();
   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    emailController.text = "yassoo.ommah@gmail.com";
+    passwordController.text = "000123456";
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,

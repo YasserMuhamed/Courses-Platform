@@ -29,7 +29,8 @@
   "password-reset-success": "Password Reset Success",
   "reset-password": "Reset Password",
   "new-password": "New Password",
-  "new-password-confirm": "New Password",
+  "new-password-confirm": "New Password Confirm",
+  "current-password": "Current Password",
   "reset-password-link-sent": "Reset Password Link Sent",
   "we-sent-code": "We sent a code to your email",
   "send-reset-link": "Send Reset Link",
@@ -96,5 +97,12 @@
   "price": "Price",
   "lectures-count": "Lecture Count",
   "duration": "Duration",
-  "mb": "MB"
+  "mb": "MB",
+  "change-language": "Change Language",
+  "welcome": "Welcome",
+  "welcome-back": "Welcome Back",
+  "welcome-to-app": "Welcome to the app",
+  "are-you-sure-you-want-to-sign-out": "Are you sure you want to sign out?",
+  "back-to-profile": "Back to Profile",
+  "password-updated-success": "Password updated successfully"
 }

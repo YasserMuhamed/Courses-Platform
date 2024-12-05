@@ -15,13 +15,17 @@ import 'package:courses_platform/features/Auth/presentation/pages/forget_passwor
 import 'package:courses_platform/features/Home/data/models/course_lecture/item.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/cubit/profile/profile_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/cubit/update_password/update_password_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/pages/course_details.dart';
 import 'package:courses_platform/features/Home/presentation/pages/home_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/login_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/register_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/verify_user_first_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/verify_user_second_page.dart';
-import 'package:courses_platform/features/Home/presentation/pages/lecture_item.dart';
+import 'package:courses_platform/features/Home/presentation/pages/profile_page.dart';
+import 'package:courses_platform/features/Home/presentation/pages/update_password.dart';
+import 'package:courses_platform/features/Home/presentation/widgets/lecture_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -111,6 +115,22 @@ class AppRouter {
         path: AppRoutes.kLectureItem,
         builder: (context, state) => LectureItem(
           item: state.extra as Item,
+        ),
+      ),
+
+      GoRoute(
+        path: AppRoutes.kProfilePage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<ProfileCubit>(),
+          child: const ProfilePage(),
+        ),
+      ),
+
+      GoRoute(
+        path: AppRoutes.kUpdatePasswordPage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<UpdatePasswordCubit>(),
+          child: const UpdatePasswordPage(),
         ),
       )
 

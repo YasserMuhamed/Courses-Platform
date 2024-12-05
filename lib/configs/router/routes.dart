@@ -9,6 +9,8 @@ class AppRoutes {
   static const kForgetPasswordThirdPage = '/forgetPasswordThirdPage';
 
   static const kHomePage = '/homePage';
+  static const kProfilePage = '/profilePage';
+  static const kUpdatePasswordPage = '/updatePasswordPage';
   static const kCourseDetailsPage = '/courseDetailsPage';
   static const kLectureItem = '/lectureItem';
 }

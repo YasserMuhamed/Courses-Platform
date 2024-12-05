@@ -52,10 +52,10 @@ dependencies:
   go_router: ^14.4.1
   google_fonts: ^6.2.1
   logger: ^2.4.0
-  pdf: ^3.11.1
   pretty_dio_logger: ^1.4.0
   shared_preferences: ^2.3.3
   shimmer: ^3.0.0
+  skeletonizer: ^1.4.2
   smooth_page_indicator: ^1.2.0+3
   toastification: ^2.3.0
   video_player: ^2.9.2
@@ -88,10 +88,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

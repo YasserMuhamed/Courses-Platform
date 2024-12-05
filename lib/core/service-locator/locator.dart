@@ -11,6 +11,8 @@ import 'package:courses_platform/features/Auth/presentation/manager/verify_user_
 import 'package:courses_platform/features/Home/data/repositories/home_repo_impl.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/cubit/profile/profile_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/cubit/update_password/update_password_cubit.dart';
 
 import 'package:get_it/get_it.dart';
 
@@ -49,4 +51,10 @@ void getItSetup() {
 
   getIt.registerFactory<CourseLectureCubit>(
       () => CourseLectureCubit(getIt<HomeRepoImpl>()));
+
+  getIt.registerFactory<UpdatePasswordCubit>(
+      () => UpdatePasswordCubit(getIt<HomeRepoImpl>()));
+
+  getIt
+      .registerFactory<ProfileCubit>(() => ProfileCubit(getIt<AuthRepoImpl>()));
 }

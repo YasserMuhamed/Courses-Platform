@@ -97,9 +97,9 @@ class CachedVideoWidgetState extends State<CachedVideoWidget> {
     _chewieController?.dispose();
 
     // Remove the cached file when the widget is disposed
-    DefaultCacheManager().removeFile(widget.videoUrl).then((_) {
-      debugPrint('Cached video file deleted.');
-    });
+    // DefaultCacheManager().removeFile(widget.videoUrl).then((_) {
+    //   debugPrint('Cached video file deleted.');
+    // });
 
     super.dispose();
   }

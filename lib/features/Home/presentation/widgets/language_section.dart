@@ -18,6 +18,7 @@ class LanguageSection extends StatelessWidget {
               ),
         ),
         DropdownButton<Locale>(
+          // dropdownColor: Colors.white,
           onChanged: (Locale? locale) {
             if (locale != null) {
               context.setLocale(locale);

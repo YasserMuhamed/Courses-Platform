@@ -25,13 +25,14 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   runApp(
     EasyLocalization(
-        supportedLocales: const [Locale('en'), Locale('ar')],
-        path:
-            'assets/translations', // <-- change the path of the translation files
-        fallbackLocale: const Locale('ar'),
-        startLocale: const Locale('ar'),
-        saveLocale: true,
-        child: const CoursesApp()),
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path:
+          'assets/translations', // <-- change the path of the translation files
+      fallbackLocale: const Locale('ar'),
+      startLocale: const Locale('ar'),
+      saveLocale: true,
+      child: const CoursesApp(),
+    ),
   );
 }
 

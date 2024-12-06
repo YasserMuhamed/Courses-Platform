@@ -2,11 +2,13 @@ import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/widgets/home-page/home_card_builder.dart';
+import 'package:courses_platform/features/Home/presentation/widgets/loading/custom_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -83,8 +85,8 @@ class _HomePageState extends State<HomePage> {
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             if (state is HomeLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Skeletonizer(
+                child: CustomCardLoading(),
               );
             } else if (state is HomeFailure) {
               return ListView(

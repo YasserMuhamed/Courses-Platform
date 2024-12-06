@@ -118,7 +118,7 @@ class _UpdatePasswordPageState extends State<UpdatePasswordPage> {
                         AppValidators.passwordValidator(value),
                     controller: passwordController,
                     hintText: "new-password".tr(),
-                    obscureText: isObscure,
+                    obscureText: isObscure2,
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -152,7 +152,7 @@ class _UpdatePasswordPageState extends State<UpdatePasswordPage> {
                             value, passwordController.text),
                     controller: passwordConfirmationController,
                     hintText: "new-password-confirm".tr(),
-                    obscureText: isObscure,
+                    obscureText: isObscure2,
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {

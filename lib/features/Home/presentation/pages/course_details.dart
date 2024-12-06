@@ -1,11 +1,13 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/widgets/loading/expansion_loading.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CourseDetails extends StatefulWidget {
   const CourseDetails({super.key, required this.id});
@@ -50,8 +52,8 @@ class _CourseDetailsState extends State<CourseDetails> {
         body: BlocBuilder<CourseLectureCubit, CourseLectureState>(
           builder: (context, state) {
             if (state is CourseLectureLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Skeletonizer(
+                child: ExpansionLoading(),
               );
             } else if (state is CourseLectureSuccess) {
               return Padding(

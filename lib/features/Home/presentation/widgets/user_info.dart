@@ -20,24 +20,25 @@ class UserInfo extends StatelessWidget {
         const ImageSection(),
         const SizedBox(height: 15),
         RichText(
-            text: TextSpan(
-          text: "${"welcome".tr()}, ",
-          style: Theme.of(context).textTheme.labelMedium,
-          children: [
-            TextSpan(
-              text: name,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.w800,
-                  ),
-            ),
-          ],
-        )),
+          text: TextSpan(
+            text: "${"welcome".tr()}, ",
+            style: Theme.of(context).textTheme.labelMedium,
+            children: [
+              TextSpan(
+                text: name,
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+              ),
+            ],
+          ),
+        ),
         const SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "email".tr(),
+              "${"email".tr()}:",
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
@@ -50,7 +51,7 @@ class UserInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "phone".tr(),
+              "${"phone".tr()}:",
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
                     fontWeight: FontWeight.w500,
                   ),

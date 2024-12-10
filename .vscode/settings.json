@@ -1,9 +1,13 @@
 {
   "cSpell.words": [
+    "Apinio",
     "chewie",
+    "Cleartext",
     "dont",
     "dotenv",
+    "pdfview",
     "Schyler",
+    "skeletonizer",
     "Toastification",
     "unfocus",
     "ميجابايت"
@@ -48,10 +52,7 @@
   "C_Cpp_Runner.compilerArgs": [],
   "C_Cpp_Runner.linkerArgs": [],
   "C_Cpp_Runner.includePaths": [],
-  "C_Cpp_Runner.includeSearch": [
-    "*",
-    "**/*"
-  ],
+  "C_Cpp_Runner.includeSearch": ["*", "**/*"],
   "C_Cpp_Runner.excludeSearch": [
     "**/build",
     "**/build/**",

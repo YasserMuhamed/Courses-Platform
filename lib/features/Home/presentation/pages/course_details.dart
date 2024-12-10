@@ -35,17 +35,15 @@ class _CourseDetailsState extends State<CourseDetails> {
             icon: Icon(
               Icons.arrow_back_rounded,
               color: AppColors.altTextColor,
-              size: 20.sp,
+              size: 26,
             ),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           title: Text(
-            "course-details".tr(),
-            style: const TextStyle(
-              color: AppColors.altTextColor,
-            ),
+            'course-lectures'.tr(),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           automaticallyImplyLeading: false,
         ),
@@ -72,8 +70,9 @@ class _CourseDetailsState extends State<CourseDetails> {
                           collapsedShape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          backgroundColor: AppColors.primaryColor,
-                          collapsedBackgroundColor: AppColors.primaryColor,
+                          backgroundColor: AppColors.lightCardBackground,
+                          collapsedBackgroundColor:
+                              AppColors.lightCardBackground,
                           trailing: Container(
                             decoration: BoxDecoration(
                               color: AppColors.altTextColor,
@@ -81,9 +80,9 @@ class _CourseDetailsState extends State<CourseDetails> {
                             ),
                             child: Icon(
                               expandedIndices.contains(index)
-                                  ? Icons.keyboard_arrow_down_rounded
-                                  : Icons.keyboard_arrow_up_rounded,
-                              color: AppColors.primaryColor,
+                                  ? Icons.keyboard_arrow_up_rounded
+                                  : Icons.keyboard_arrow_down_rounded,
+                              color: AppColors.darkerGrey,
                             ),
                           ),
                           onExpansionChanged: (expanded) {
@@ -125,7 +124,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                                         trailing: MaterialButton(
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
-                                                BorderRadius.circular(12),
+                                                BorderRadius.circular(8),
                                           ),
                                           height: 30.h,
                                           color: AppColors.textColor
@@ -141,13 +140,13 @@ class _CourseDetailsState extends State<CourseDetails> {
                                                 .textTheme
                                                 .labelSmall!
                                                 .copyWith(
-                                                  color: AppColors
-                                                      .darkPrimaryColor,
+                                                  color:
+                                                      AppColors.cardBackground,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                           ),
                                         ),
-                                        tileColor: AppColors.darkPrimaryColor,
+                                        tileColor: AppColors.cardBackground,
                                         contentPadding: EdgeInsets.symmetric(
                                             horizontal: 16.w, vertical: 4.h),
                                         title: Text(
@@ -201,7 +200,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                                         Container(
                                           width: double.infinity,
                                           height: 1,
-                                          color: AppColors.textColor,
+                                          color: AppColors.lightCardBackground,
                                         ),
                                     ],
                                   ),

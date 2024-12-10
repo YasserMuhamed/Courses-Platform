@@ -37,13 +37,20 @@ class UserInfo extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "${"email".tr()}:",
-              style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * .25 - 20,
+              child: Text(
+                "${"mail".tr()}:",
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
             ),
-            Text(email, style: Theme.of(context).textTheme.labelLarge),
+            SizedBox(
+                width: MediaQuery.of(context).size.width * .65 - 10,
+                child: FittedBox(
+                    child: Text(email,
+                        style: Theme.of(context).textTheme.labelLarge))),
           ],
         ),
         const SizedBox(height: 4),

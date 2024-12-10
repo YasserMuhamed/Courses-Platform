@@ -12,6 +12,7 @@ import 'core/helpers/shared_pref_helper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   getItSetup();
+
   await Future.wait<void>([
     checkIfUserLoggedIn(),
     EasyLocalization.ensureInitialized(),

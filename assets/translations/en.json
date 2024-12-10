@@ -85,6 +85,8 @@
   "Not found , Try again": "Not found, Try again",
   "courses": "Courses",
   "course-details": "Course Details",
+  "course-lectures": "Course Lectures",
+  "course-content": "Course Content",
   "home-page": "Home Page",
   "profile": "Profile",
   "settings": "Settings",
@@ -104,5 +106,9 @@
   "welcome-to-app": "Welcome to the app",
   "are-you-sure-you-want-to-sign-out": "Are you sure you want to sign out?",
   "back-to-profile": "Back to Profile",
-  "password-updated-success": "Password updated successfully"
+  "password-updated-success": "Password updated successfully",
+  "lectures": "Lectures",
+  "lecture": "Lecture",
+  "created-at": "Created At",
+  "mail": "Email"
 }

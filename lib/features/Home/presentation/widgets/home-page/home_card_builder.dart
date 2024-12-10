@@ -22,10 +22,8 @@ class HomeCardsBuilder extends StatelessWidget {
         onTap: () => GoRouter.of(context).push(AppRoutes.kCourseDetailsPage,
             extra: subCourses.data!.data![index].course!.id),
         child: CustomCard(
-            imageURL: subCourses.data!.data![index].course!.image!,
-            courseName: subCourses.data!.data![index].course!.title!,
-            courseDescription:
-                subCourses.data!.data![index].course!.description!),
+          data: subCourses.data!.data![index],
+        ),
       ),
     );
   }

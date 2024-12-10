@@ -19,13 +19,18 @@ class AppColors {
   // Card background color: Background color for cards or content containers
   static const Color cardBackground =
       Color(0xFF1E1E1E); // Darker Gray for Cards
+  static const Color lightCardBackground =
+      Color.fromARGB(255, 39, 39, 39); // Darker Gray for Cards
 
   // Light Gray: For borders, dividers, or subtle backgrounds
-  static final Color lightGrey =
-      Colors.grey.shade700; // Darker Gray for dark mode
+  // static final Color lightGrey =
+  //     Colors.grey.shade600; // Darker Gray for dark mode
 
   // Dark Gray: For secondary text, labels, and muted elements
-  static const Color darkGrey = Color(0xFF888888);
+
+  static const Color lightGrey = Color.fromARGB(255, 162, 162, 162);
+  static const Color grey = Color.fromARGB(255, 123, 123, 123);
+  static const Color darkGrey = Color.fromARGB(255, 94, 94, 94);
   // Medium Dark Gray for text
   static const Color darkerGrey = Color.fromARGB(255, 71, 71, 71);
   // Accent Green: Success indicators, such as completed status or positive notifications

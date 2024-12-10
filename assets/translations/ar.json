@@ -85,6 +85,8 @@
   "Not found , Try again": "لم يتم العثور، يرجى المحاولة مرة أخرى",
   "courses": "المقررات",
   "course-details": "تفاصيل المقرر",
+  "course-lectures": "محاضرات المقرر",
+  "course-content": "محتوى المقرر",
   "home-page": "الصفحة الرئيسية",
   "profile": "الملف الشخصي",
   "settings": "الإعدادات",
@@ -104,5 +106,9 @@
   "welcome-to-app": "مرحبا بك في التطبيق",
   "are-you-sure-you-want-to-sign-out": "هل أنت متأكد من رغبتك في تسجيل الخروج؟",
   "back-to-profile": "العودة للملف الشخصي",
-  "password-updated-success": "تم تحديث كلمة المرور بنجاح"
+  "password-updated-success": "تم تحديث كلمة المرور بنجاح",
+  "lectures": "المحاضرات",
+  "lecture": "محاضرة",
+  "created-at": "تاريخ الإنشاء",
+  "mail": "البريد"
 }

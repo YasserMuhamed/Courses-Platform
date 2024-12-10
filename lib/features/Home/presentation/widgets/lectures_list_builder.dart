@@ -98,60 +98,54 @@ class CourseLectureList extends StatelessWidget {
                                             child: SvgPicture.asset(
                                               'assets/SVGs/book-open.svg',
                                               width: 24.w,
-                                              color: AppColors.backgroundColor,
+                                              // color: AppColors.backgroundColor,
                                             ),
                                           ),
                                         )
                                       : Row(
                                           children: [
-                                            SizedBox(
-                                              width: 48.w,
-                                              child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      AppColors.altTextColor,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                GoRouter.of(context).push(
+                                                    AppRoutes.kLectureItem,
+                                                    extra: item);
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.all(6),
+                                                width: 48.w,
+                                                height: 30.h,
+                                                decoration: BoxDecoration(
+                                                  color: AppColors.altTextColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
                                                 ),
-                                                onPressed: () {
-                                                  GoRouter.of(context).push(
-                                                      AppRoutes.kLectureItem,
-                                                      extra: item);
-                                                },
                                                 child: SvgPicture.asset(
                                                   'assets/SVGs/tv-play.svg',
-                                                  width: 24.w,
-                                                  color:
-                                                      AppColors.backgroundColor,
+                                                  // color:
+                                                  //     AppColors.backgroundColor,
                                                 ),
                                               ),
                                             ),
                                             SizedBox(width: 4.w),
                                             item.fileType == "video"
-                                                ? SizedBox(
-                                                    width: 48.w,
-                                                    child: ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        backgroundColor:
-                                                            AppColors
-                                                                .altTextColor,
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                        ),
+                                                ? GestureDetector(
+                                                    onTap: () {},
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.all(6),
+                                                      width: 48.w,
+                                                      height: 30.h,
+                                                      decoration: BoxDecoration(
+                                                        color: AppColors
+                                                            .altTextColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
                                                       ),
-                                                      onPressed: () {},
                                                       child: SvgPicture.asset(
                                                         'assets/SVGs/download.svg',
-                                                        width: 24.w,
-                                                        color: AppColors
-                                                            .backgroundColor,
+                                                        // color: AppColors
+                                                        //     .backgroundColor,
                                                       ),
                                                     ),
                                                   )
@@ -182,7 +176,7 @@ class CourseLectureList extends StatelessWidget {
                                           size: 16.sp,
                                         )
                                       : Icon(
-                                          FontAwesomeIcons.solidFilePdf,
+                                          FontAwesomeIcons.filePdf,
                                           color: AppColors.altTextColor
                                               .withAlpha(150),
                                           size: 16.sp,

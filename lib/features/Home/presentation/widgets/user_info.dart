@@ -1,6 +1,10 @@
 import 'package:courses_platform/features/Home/presentation/widgets/image_and_name.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'dart:ui' as UI;
+
+UI.TextDirection direction = UI.TextDirection.ltr;
 
 class UserInfo extends StatelessWidget {
   const UserInfo({
@@ -38,7 +42,7 @@ class UserInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * .25 - 20,
+              width: 60.w,
               child: Text(
                 "${"mail".tr()}:",
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
@@ -47,10 +51,17 @@ class UserInfo extends StatelessWidget {
               ),
             ),
             SizedBox(
-                width: MediaQuery.of(context).size.width * .65 - 10,
-                child: FittedBox(
-                    child: Text(email,
-                        style: Theme.of(context).textTheme.labelLarge))),
+              width: 250.w,
+              child: Text(
+                email,
+                style: Theme.of(context).textTheme.labelLarge,
+                textAlign: context.locale.languageCode == "ar"
+                    ? TextAlign.start
+                    : TextAlign.end,
+                textDirection: direction,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 4),

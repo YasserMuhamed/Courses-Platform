@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text("profile".tr()),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: SingleChildScrollView(
           child: Column(
             children: [

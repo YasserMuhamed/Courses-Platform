@@ -46,11 +46,8 @@ class _ApinioVideoPlayerState extends State<ApinioVideoPlayer> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Directionality(
-                textDirection: TextDirection.ltr,
-                child: CustomVideoPlayer(
-                  customVideoPlayerController: _customVideoPlayerController,
-                ),
+              CustomVideoPlayer(
+                customVideoPlayerController: _customVideoPlayerController,
               ),
             ],
           ),

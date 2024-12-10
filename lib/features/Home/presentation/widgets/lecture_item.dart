@@ -12,21 +12,20 @@ class LectureItem extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Center(
-            child: item.fileType == "pdf"
-                ? PDFPage(url: item.file!, name: item.title!)
-                :
-                //  ApinioVideoPlayer(url: item.file!),
-                SizedBox()
-            // SinglePlayerSingleVideoScreen()
-            //  MyHomePage()
+          child: item.fileType == "pdf"
+              ? PDFPage(url: item.file!, name: item.title!)
+              : ApinioVideoPlayer(url: item.file!),
+          // SizedBox()
+          // SinglePlayerSingleVideoScreen()
+          //  MyHomePage()
 
-            // VideoPlayerView(
-            //     url: item.file!,
-            //     dataSourceType: DataSourceType.network,
-            //     title: item.title!,
-            //     createdAt: item.createdAt!,
-            //   ),
-            ),
+          // VideoPlayerView(
+          //     url: item.file!,
+          //     dataSourceType: DataSourceType.network,
+          //     title: item.title!,
+          //     createdAt: item.createdAt!,
+          //   ),
+        ),
       ),
     );
   }

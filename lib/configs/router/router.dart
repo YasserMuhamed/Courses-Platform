@@ -13,7 +13,9 @@ import 'package:courses_platform/features/Auth/presentation/pages/forget_passwor
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_second_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_third_page.dart';
 import 'package:courses_platform/features/Home/data/models/course_lecture/item.dart';
+import 'package:courses_platform/features/Home/data/repositories/home_repo_impl.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/cubit/download_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/profile/profile_cubit.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/update_password/update_password_cubit.dart';
@@ -113,8 +115,11 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutes.kLectureItem,
-        builder: (context, state) => LectureItem(
-          item: state.extra as Item,
+        builder: (context, state) => BlocProvider(
+          create: (context) => DownloadCubit(getIt<HomeRepoImpl>()),
+          child: LectureItem(
+            item: state.extra as Item,
+          ),
         ),
       ),
 

@@ -75,85 +75,51 @@ class CourseLectureList extends StatelessWidget {
                         Column(
                           children: [
                             ListTile(
-                              trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  item.fileType == "pdf"
-                                      ? SizedBox(
-                                          width: 100.w,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  AppColors.altTextColor,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                            ),
-                                            onPressed: () {
-                                              GoRouter.of(context).push(
-                                                  AppRoutes.kLectureItem,
-                                                  extra: item);
-                                            },
-                                            child: SvgPicture.asset(
-                                              'assets/SVGs/book-open.svg',
-                                              width: 24.w,
-                                              // color: AppColors.backgroundColor,
-                                            ),
-                                          ),
-                                        )
-                                      : Row(
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                GoRouter.of(context).push(
-                                                    AppRoutes.kLectureItem,
-                                                    extra: item);
-                                              },
-                                              child: Container(
-                                                padding: EdgeInsets.all(6),
-                                                width: 48.w,
-                                                height: 30.h,
-                                                decoration: BoxDecoration(
-                                                  color: AppColors.altTextColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                ),
-                                                child: SvgPicture.asset(
-                                                  'assets/SVGs/tv-play.svg',
-                                                  // color:
-                                                  //     AppColors.backgroundColor,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 4.w),
-                                            item.fileType == "video"
-                                                ? GestureDetector(
-                                                    onTap: () {},
-                                                    child: Container(
-                                                      padding:
-                                                          EdgeInsets.all(6),
-                                                      width: 48.w,
-                                                      height: 30.h,
-                                                      decoration: BoxDecoration(
-                                                        color: AppColors
-                                                            .altTextColor,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
-                                                      child: SvgPicture.asset(
-                                                        'assets/SVGs/download.svg',
-                                                        // color: AppColors
-                                                        //     .backgroundColor,
-                                                      ),
-                                                    ),
-                                                  )
-                                                : const SizedBox(),
-                                          ],
+                              trailing: item.fileType == "pdf"
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        GoRouter.of(context).push(
+                                            AppRoutes.kLectureItem,
+                                            extra: item);
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.all(6),
+                                        width: 60.w,
+                                        height: 30.h,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.altTextColor,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
-                                ],
-                              ),
+                                        child: SvgPicture.asset(
+                                          'assets/SVGs/book-open.svg',
+                                          // color:
+                                          //     AppColors.backgroundColor,
+                                        ),
+                                      ),
+                                    )
+                                  : GestureDetector(
+                                      onTap: () {
+                                        GoRouter.of(context).push(
+                                            AppRoutes.kLectureItem,
+                                            extra: item);
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.all(6),
+                                        width: 60.w,
+                                        height: 30.h,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.altTextColor,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: SvgPicture.asset(
+                                          'assets/SVGs/tv-play.svg',
+                                          // color:
+                                          //     AppColors.backgroundColor,
+                                        ),
+                                      ),
+                                    ),
                               tileColor: AppColors.cardBackground,
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 16.w, vertical: 4.h),

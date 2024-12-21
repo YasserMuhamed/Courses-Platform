@@ -1,6 +1,7 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/pages/saved_videos_page.dart';
 import 'package:courses_platform/features/Home/presentation/widgets/home-page/home_card_builder.dart';
 import 'package:courses_platform/features/Home/presentation/widgets/loading/custom_card_loading.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -52,6 +53,12 @@ class _HomePageState extends State<HomePage> {
                   width: 24,
                 )),
           ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SavedVideosPage()));
+              },
+              icon: Icon(Icons.download_rounded)),
         ],
       ),
       body: RefreshIndicator(

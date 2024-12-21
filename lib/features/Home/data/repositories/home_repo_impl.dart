@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:courses_platform/core/api/api_manager.dart';
 import 'package:courses_platform/core/error/failures.dart';
 import 'package:courses_platform/features/Home/data/models/course_lecture/course_lecture.dart';
@@ -10,6 +11,10 @@ import 'package:easy_localization/easy_localization.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final ApiManager apiManager;
+  final StreamController<double> _progressController =
+      StreamController<double>.broadcast();
+
+  Stream<double> get progressStream => _progressController.stream;
 
   HomeRepoImpl({required this.apiManager});
 

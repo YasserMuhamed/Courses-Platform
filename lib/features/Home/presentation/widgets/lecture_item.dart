@@ -1,3 +1,4 @@
+import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:courses_platform/features/Home/data/models/course_lecture/item.dart';
 import 'package:courses_platform/features/Home/presentation/widgets/apinio_video_player.dart';
 import 'package:courses_platform/features/Home/presentation/widgets/pdf_page.dart';
@@ -17,7 +18,11 @@ class LectureItem extends StatelessWidget {
         child: Center(
           child: item.fileType == "pdf"
               ? PDFPage(url: item.file!, name: item.title!)
-              : ApinioVideoPlayer(url: item.file!),
+              : ApinioVideoPlayer(
+                  url: item.file!,
+                  fileName: item.title!,
+                  dataSourceType: DataSourceType.network,
+                ),
         ),
       ),
     );

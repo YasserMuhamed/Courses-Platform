@@ -1,3 +1,4 @@
+import 'package:courses_platform/configs/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -13,8 +14,8 @@ class BottomSlider extends StatelessWidget {
       child: Center(
         child: SmoothPageIndicator(
             effect: ExpandingDotsEffect(
-              dotColor: Theme.of(context).colorScheme.secondary,
-              activeDotColor: Theme.of(context).primaryColor,
+              dotColor: AppColors.grey,
+              activeDotColor: AppColors.primaryColor,
               dotHeight: 10.h,
               dotWidth: 10.w,
               spacing: 4.w,

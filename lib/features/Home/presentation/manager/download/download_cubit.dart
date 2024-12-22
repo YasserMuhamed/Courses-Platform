@@ -6,6 +6,7 @@ import 'package:courses_platform/features/Home/data/repositories/home_repo.dart'
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 part 'download_state.dart';
@@ -32,17 +33,17 @@ class DownloadCubit extends Cubit<DownloadState> {
         onReceiveProgress: (received, total) {
           if (total != -1) {
             progress = (received / total);
-            print('Progress: $progress%');
+            debugPrint('Progress: $progress%');
             emit(DownloadCubitLoading(progress));
           }
         },
       );
 
-      print('File downloaded to $filePath');
+      debugPrint('File downloaded to $filePath');
       emit(DownloadCubitSuccess());
       return right(filePath);
     } catch (e) {
-      print('Error downloading file: $e');
+      debugPrint('Error downloading file: $e');
       emit(DownloadCubitFailure());
       return left(ServerFailure(error: e.toString()));
     }

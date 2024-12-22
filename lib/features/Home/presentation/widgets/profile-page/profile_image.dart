@@ -1,7 +1,8 @@
+import 'package:courses_platform/core/constants/assets.dart';
 import 'package:flutter/material.dart';
 
-class ImageSection extends StatelessWidget {
-  const ImageSection({
+class ProfileImage extends StatelessWidget {
+  const ProfileImage({
     super.key,
   });
 
@@ -13,7 +14,7 @@ class ImageSection extends StatelessWidget {
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
       ),
-      child: Image.asset("assets/images/profile.png"),
+      child: Image.asset(Assets.assetsImagesProfile),
     );
   }
 }

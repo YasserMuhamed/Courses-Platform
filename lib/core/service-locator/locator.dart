@@ -9,11 +9,11 @@ import 'package:courses_platform/features/Auth/data/repositories/auth_repo_impl.
 import 'package:courses_platform/features/Auth/presentation/manager/verify_user_email_cubit/verify_user_email_cubit.dart';
 import 'package:courses_platform/features/Auth/presentation/manager/verify_user_otp_cubit/verify_user_otp_cubit.dart';
 import 'package:courses_platform/features/Home/data/repositories/home_repo_impl.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/download_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/profile/profile_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/update_password/update_password_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/course_lecture/course_lecture_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/download/download_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/home/home_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/profile/profile_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/update_password/update_password_cubit.dart';
 
 import 'package:get_it/get_it.dart';
 

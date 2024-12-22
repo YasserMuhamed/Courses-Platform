@@ -13,7 +13,7 @@ class PDFPage extends StatefulWidget {
   const PDFPage({super.key, required this.url, required this.name});
 
   @override
-  _PDFPageState createState() => _PDFPageState();
+  State<PDFPage> createState() => _PDFPageState();
 }
 
 class _PDFPageState extends State<PDFPage> {

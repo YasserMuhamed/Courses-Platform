@@ -1,7 +1,8 @@
-import 'package:courses_platform/features/Home/presentation/widgets/image_and_name.dart';
+import 'package:courses_platform/features/Home/presentation/widgets/profile-page/profile_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+// ignore: library_prefixes
 import 'dart:ui' as UI;
 
 UI.TextDirection direction = UI.TextDirection.ltr;
@@ -21,7 +22,7 @@ class UserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const ImageSection(),
+        const ProfileImage(),
         const SizedBox(height: 15),
         RichText(
           text: TextSpan(

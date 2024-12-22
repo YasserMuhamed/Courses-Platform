@@ -1,16 +1,10 @@
-import 'package:courses_platform/configs/router/routes.dart';
-import 'package:courses_platform/core/helpers/app_text_field.dart';
-import 'package:courses_platform/core/helpers/my_button.dart';
-import 'package:courses_platform/core/helpers/toast_helper.dart';
-import 'package:courses_platform/core/helpers/validators.dart';
-import 'package:courses_platform/features/Auth/presentation/manager/forget_password_first_cubit/forget_password_cubit.dart';
 import 'package:courses_platform/features/Auth/presentation/widgets/bottom_slider.dart';
-import 'package:courses_platform/features/Auth/presentation/widgets/svg_icon.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:courses_platform/features/Auth/presentation/widgets/bottom_text_section.dart';
+import 'package:courses_platform/features/Auth/presentation/widgets/forget_password_first_page/email_section.dart';
+import 'package:courses_platform/features/Auth/presentation/widgets/forget_password_first_page/icon_with_text_section.dart';
+import 'package:courses_platform/features/Auth/presentation/widgets/forget_password_first_page/send_otp_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class ForgetPasswordFirstPage extends StatefulWidget {
   const ForgetPasswordFirstPage({super.key});
@@ -25,7 +19,7 @@ class _ForgetPasswordFirstPageState extends State<ForgetPasswordFirstPage> {
   TextEditingController emailController = TextEditingController();
 
   GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
-  String email = '';
+
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   @override
@@ -46,111 +40,20 @@ class _ForgetPasswordFirstPageState extends State<ForgetPasswordFirstPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 75.h),
-                    const Center(
-                      child: SvgIcon(
-                        path: 'assets/SVGs/fingerprint-solid.svg',
-                      ),
-                    ),
-                    SizedBox(height: 20.h),
-                    Center(
-                      child: Text(
-                        'forgot-password'.tr(),
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Center(
-                      child: Text(
-                        "no-worries".tr(),
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.labelSmall,
-                      ),
-                    ),
-                    SizedBox(height: 30.h),
-                    Text(
-                      "email".tr(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelSmall!
-                          .copyWith(fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: 10.h),
-                    AppTextField(
-                      onChange: (value) {
+                    IconWithTextSection(),
+                    EmailSection(emailController: emailController),
+                    SizedBox(height: 14.h),
+                    SendOTPButton(
+                      emailController: emailController,
+                      forgetPasswordFormKey: forgetPasswordFormKey,
+                      setAutovalidateMode: (mode) {
                         setState(() {
-                          email = value;
+                          autovalidateMode = mode;
                         });
                       },
-                      validator: AppValidators.emailValidator,
-                      controller: emailController,
-                      hintText: "enter-email".tr(),
-                    ),
-                    SizedBox(height: 14.h),
-                    BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
-                      listenWhen: (previous, current) =>
-                          current is ForgetPasswordSuccess ||
-                          current is ForgetPasswordFailure ||
-                          current is ForgetPasswordLoading,
-                      listener: (context, state) {
-                        if (state is ForgetPasswordSuccess) {
-                          ToastHelper().showSuccessToast(
-                              context, "reset-password-link-sent".tr());
-                          GoRouter.of(context).push(
-                              AppRoutes.kForgetPasswordSecondPage,
-                              extra: email);
-                        } else if (state is ForgetPasswordFailure) {
-                          ToastHelper().showErrorToast(context, state.error);
-                        }
-                      },
-                      builder: (context, state) {
-                        return MyButton(
-                            text: (state is ForgetPasswordLoading)
-                                ? "loading".tr()
-                                : "reset-password".tr(),
-                            onTap: () {
-                              if (forgetPasswordFormKey.currentState!
-                                  .validate()) {
-                                // GoRouter.of(context).push(
-                                //     AppRoutes.kForgetPasswordSecondPage,
-                                //     extra: email);
-                                BlocProvider.of<ForgetPasswordCubit>(context)
-                                    .forgetPassword(email);
-                              } else {
-                                setState(() {
-                                  autovalidateMode =
-                                      AutovalidateMode.onUserInteraction;
-                                });
-                              }
-                            });
-                      },
                     ),
                     SizedBox(height: 10.h),
-                    GestureDetector(
-                      onTap: () {
-                        GoRouter.of(context).go(AppRoutes.kLoginPage);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.arrow_back_rounded,
-                              size: 20.sp,
-                            ),
-                            SizedBox(width: 8.w),
-                            Text(
-                              "back-to-login".tr(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall!
-                                  .copyWith(fontWeight: FontWeight.w300),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
+                    BottomTextSection()
                   ],
                 ),
               ),

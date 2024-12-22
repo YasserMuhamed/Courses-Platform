@@ -1,11 +1,12 @@
 import 'package:courses_platform/configs/theme/app_colors.dart';
+import 'package:courses_platform/core/constants/assets.dart';
 import 'package:courses_platform/core/helpers/app_text_field.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
 import 'package:courses_platform/core/helpers/validators.dart';
 import 'package:courses_platform/features/Auth/presentation/widgets/svg_icon.dart';
 import 'package:courses_platform/features/Home/data/models/update_password_request.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/update_password/update_password_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/update_password/update_password_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,8 +51,7 @@ class _UpdatePasswordPageState extends State<UpdatePasswordPage> {
                 children: [
                   SizedBox(height: 75.h),
                   const Center(
-                    child:
-                        SvgIcon(path: "assets/SVGs/keyboard-svgrepo-com.svg"),
+                    child: SvgIcon(path: Assets.assetsSVGsKeyboardSvgrepoCom),
                   ),
                   SizedBox(height: 20.h),
                   Center(

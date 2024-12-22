@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:courses_platform/features/Home/presentation/widgets/apinio_video_player.dart';
+import 'package:courses_platform/features/Home/presentation/widgets/course-details-page/apinio_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -8,7 +8,7 @@ class SavedVideosPage extends StatefulWidget {
   const SavedVideosPage({super.key});
 
   @override
-  _SavedVideosPageState createState() => _SavedVideosPageState();
+  State<SavedVideosPage> createState() => _SavedVideosPageState();
 }
 
 class _SavedVideosPageState extends State<SavedVideosPage> {

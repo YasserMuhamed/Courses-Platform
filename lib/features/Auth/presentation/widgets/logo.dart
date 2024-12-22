@@ -1,3 +1,4 @@
+import 'package:courses_platform/core/constants/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,7 +9,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      'assets/SVGs/logo.svg',
+      Assets.assetsSVGsLogo,
       width: 140.w,
       height: 140.h,
     );

@@ -14,12 +14,12 @@ import 'package:courses_platform/features/Auth/presentation/pages/forget_passwor
 import 'package:courses_platform/features/Auth/presentation/pages/forget_password_third_page.dart';
 import 'package:courses_platform/features/Home/data/models/course_lecture/item.dart';
 import 'package:courses_platform/features/Home/data/repositories/home_repo_impl.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/course_lecture_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/download_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/home_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/profile/profile_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/update_password/update_password_cubit.dart';
-import 'package:courses_platform/features/Home/presentation/pages/course_details.dart';
+import 'package:courses_platform/features/Home/presentation/manager/course_lecture/course_lecture_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/download/download_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/home/home_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/profile/profile_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/manager/update_password/update_password_cubit.dart';
+import 'package:courses_platform/features/Home/presentation/pages/course_details_page.dart';
 import 'package:courses_platform/features/Home/presentation/pages/home_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/login_page.dart';
 import 'package:courses_platform/features/Auth/presentation/pages/register_page.dart';
@@ -27,7 +27,7 @@ import 'package:courses_platform/features/Auth/presentation/pages/verify_user_fi
 import 'package:courses_platform/features/Auth/presentation/pages/verify_user_second_page.dart';
 import 'package:courses_platform/features/Home/presentation/pages/profile_page.dart';
 import 'package:courses_platform/features/Home/presentation/pages/update_password.dart';
-import 'package:courses_platform/features/Home/presentation/widgets/lecture_item.dart';
+import 'package:courses_platform/features/Home/presentation/widgets/course-details-page/lecture_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -96,7 +96,7 @@ class AppRouter {
           ),
         ),
       ),
-
+      // *************************** Home Routes ***************************
       GoRoute(
         path: AppRoutes.kHomePage,
         builder: (context, state) => BlocProvider(
@@ -109,7 +109,7 @@ class AppRouter {
         path: AppRoutes.kCourseDetailsPage,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt<CourseLectureCubit>(),
-          child: CourseDetails(id: state.extra as int),
+          child: CourseDetailsPage(id: state.extra as int),
         ),
       ),
 
@@ -122,7 +122,7 @@ class AppRouter {
           ),
         ),
       ),
-
+      // *************************** Profile Routes ***************************
       GoRoute(
         path: AppRoutes.kProfilePage,
         builder: (context, state) => BlocProvider(
@@ -138,89 +138,6 @@ class AppRouter {
           child: const UpdatePasswordPage(),
         ),
       )
-
-      // *************************** Dashboard && Product Routes ***************************
-
-      // GoRoute(
-      //   path: AppRoutes.kDashboardView,
-      //   builder: (context, state) => const DashboardView(),
-      // ),
-
-      // GoRoute(
-      //   path: AppRoutes.kProductDetailsView,
-      //   builder: (context, state) => ProductDetailsView(
-      //     productModel: state.extra as ProductModel,
-      //   ),
-      // ),
-
-      // GoRoute(
-      //   path: AppRoutes.kCreateProductView,
-      //   builder: (context, state) => const CreateProductView(),
-      // ),
-
-      // GoRoute(
-      //   path: AppRoutes.kEditProductView,
-      //   builder: (context, state) => EditProductView(
-      //     product: state.extra as ProductModel,
-      //   ),
-      // ),
-
-      // *************************** Category Routes ***************************
-
-      // GoRoute(
-      //   path: AppRoutes.kCategoryView,
-      //   builder: (context, state) => const CategoryView(),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.kCategoryProductsView,
-      //   builder: (context, state) => CategoryProductsView(
-      //     categoryModel: state.extra as CategoryModel,
-      //   ),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.kEditCategoryView,
-      //   builder: (context, state) => EditCategoryView(
-      //     categoryModel: state.extra as CategoryModel,
-      //   ),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.kCreateCategoryView,
-      //   builder: (context, state) => const CreateCategoryView(),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.kDeleteCategoryView,
-      //   builder: (context, state) => DeleteCategoryView(
-      //     categoryModel: state.extra as CategoryModel,
-      //   ),
-      // ),
-
-      // *************************** Brand Routes ***************************
-      // GoRoute(
-      //   path: AppRoutes.kBrandView,
-      //   builder: (context, state) => const BrandsView(),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.kBrandProductsView,
-      //   builder: (context, state) => BrandProductsView(
-      //     brandModel: state.extra as BrandModel,
-      //   ),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.kEditBrandView,
-      //   builder: (context, state) => EditBrandsView(
-      //     brandModel: state.extra as BrandModel,
-      //   ),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.kAddBrandView,
-      //   builder: (context, state) => const CreateBrandView(),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.kDeleteBrandView,
-      //   builder: (context, state) => DeleteBrandsView(
-      //     brandModel: state.extra as BrandModel,
-      //   ),
-      // ),
     ],
   );
 }

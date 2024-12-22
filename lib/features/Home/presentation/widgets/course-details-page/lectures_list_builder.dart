@@ -1,5 +1,6 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
+import 'package:courses_platform/core/constants/assets.dart';
 import 'package:courses_platform/features/Home/data/models/course_lecture/course_lecture.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-class CourseLectureList extends StatelessWidget {
+class CourseLectureListBuilder extends StatelessWidget {
   final CourseLecture courseLecture;
   final Set<int> expandedIndices;
   final Function(int, bool) onExpansionChanged;
 
-  const CourseLectureList({
+  const CourseLectureListBuilder({
     super.key,
     required this.courseLecture,
     required this.expandedIndices,
@@ -92,7 +93,7 @@ class CourseLectureList extends StatelessWidget {
                                               BorderRadius.circular(8),
                                         ),
                                         child: SvgPicture.asset(
-                                          'assets/SVGs/book-open.svg',
+                                          Assets.assetsSVGsBookOpen,
                                           // color:
                                           //     AppColors.backgroundColor,
                                         ),
@@ -114,7 +115,7 @@ class CourseLectureList extends StatelessWidget {
                                               BorderRadius.circular(8),
                                         ),
                                         child: SvgPicture.asset(
-                                          'assets/SVGs/tv-play.svg',
+                                          Assets.assetsSVGsTvPlay,
                                           // color:
                                           //     AppColors.backgroundColor,
                                         ),

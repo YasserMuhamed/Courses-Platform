@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
+import 'package:courses_platform/core/constants/assets.dart';
 import 'package:courses_platform/features/Home/data/models/sub_courses/datum.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,7 @@ class _CustomCardState extends State<CustomCard> {
                       errorWidget: (context, url, error) => SizedBox(
                         width: 100.w,
                         child: SvgPicture.asset(
-                          "assets/SVGs/not_found.svg",
+                          Assets.assetsSVGsNotFound,
                           fit: BoxFit.fill,
                           width: 100.w,
                         ),

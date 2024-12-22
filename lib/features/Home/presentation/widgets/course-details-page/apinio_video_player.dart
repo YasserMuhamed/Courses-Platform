@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
-import 'package:courses_platform/features/Home/presentation/manager/cubit/download_cubit.dart';
+import 'package:courses_platform/core/constants/assets.dart';
+import 'package:courses_platform/features/Home/presentation/manager/download/download_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -113,7 +114,7 @@ class _ApinioVideoPlayerState extends State<ApinioVideoPlayer> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: SvgPicture.asset(
-                            'assets/SVGs/download.svg',
+                            Assets.assetsSVGsDownload,
                             // color: AppColors
                             //     .backgroundColor,
                           ),
@@ -156,7 +157,7 @@ class _ApinioVideoPlayerState extends State<ApinioVideoPlayer> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: SvgPicture.asset(
-                        'assets/SVGs/download.svg',
+                        Assets.assetsSVGsDownload,
                         // color: AppColors
                         //     .backgroundColor,
                       ),

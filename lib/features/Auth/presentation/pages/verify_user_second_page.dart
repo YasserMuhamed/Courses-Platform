@@ -1,5 +1,6 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/configs/theme/app_colors.dart';
+import 'package:courses_platform/core/constants/assets.dart';
 import 'package:courses_platform/core/constants/login_constants.dart';
 import 'package:courses_platform/core/helpers/app_regex.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
@@ -51,7 +52,7 @@ class _VerifyUserSecondPageState extends State<VerifyUserSecondPage> {
                     children: [
                       const Center(
                         child: SvgIcon(
-                          path: 'assets/SVGs/mail-open.svg',
+                          path: Assets.assetsSVGsMailOpen,
                         ),
                       ),
                       SizedBox(height: 20.h),

@@ -1,6 +1,6 @@
 import 'package:courses_platform/configs/router/routes.dart';
 import 'package:courses_platform/features/Home/data/models/sub_courses/sub_courses.dart';
-import 'package:courses_platform/features/Home/presentation/widgets/custom_card.dart';
+import 'package:courses_platform/features/Home/presentation/widgets/home-page/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

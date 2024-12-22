@@ -1,4 +1,5 @@
 import 'package:courses_platform/configs/router/routes.dart';
+import 'package:courses_platform/core/constants/assets.dart';
 import 'package:courses_platform/core/helpers/app_text_field.dart';
 import 'package:courses_platform/core/helpers/my_button.dart';
 import 'package:courses_platform/core/helpers/toast_helper.dart';
@@ -46,7 +47,7 @@ class _VerifyUserFirstPageState extends State<VerifyUserFirstPage> {
                     SizedBox(height: 75.h),
                     const Center(
                       child: SvgIcon(
-                        path: 'assets/SVGs/fingerprint-solid.svg',
+                        path: Assets.assetsSVGsFingerprintSolid,
                       ),
                     ),
                     SizedBox(height: 20.h),

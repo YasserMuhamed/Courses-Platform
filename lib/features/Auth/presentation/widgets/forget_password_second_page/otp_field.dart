@@ -5,8 +5,8 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: library_prefixes
 import 'dart:ui' as UI;
-
 UI.TextDirection direction = UI.TextDirection.ltr;
+
 
 class OTPField extends StatelessWidget {
   const OTPField({

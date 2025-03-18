@@ -11,11 +11,6 @@ import 'package:easy_localization/easy_localization.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final ApiManager apiManager;
-  final StreamController<double> _progressController =
-      StreamController<double>.broadcast();
-
-  Stream<double> get progressStream => _progressController.stream;
-
   HomeRepoImpl({required this.apiManager});
 
   @override

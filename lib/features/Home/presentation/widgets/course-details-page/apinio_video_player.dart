@@ -36,6 +36,7 @@ class _ApinioVideoPlayerState extends State<ApinioVideoPlayer> {
   @override
   void initState() {
     super.initState();
+    
     switch (widget.dataSourceType) {
       case DataSourceType.network:
         _videoPlayerController = CachedVideoPlayerController.network(
